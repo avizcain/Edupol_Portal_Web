@@ -44,6 +44,7 @@ import com.google.gson.JsonSyntaxException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.List;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -212,24 +213,25 @@ public class FuncionesGenerales {
         List<CiudadModel> lisCiudadModels;
         List<TiposEpsModel> listTiposEpsModel;
         List<PeriodoAcademicoModel> listPeriodoAcademico;
-      
+        List<CategoriaSisbenModel> lisCategoriaSisbenModels;
 
         
         ciudadesDao = new CiudadesDAO();
         tipoEpsDAO = new TiposEpsDAO();
         periodoAcademicoDAO = new PeriodoAcademicoDAO();
-      
+        categoriaSisbenDao = new CategoriaSisbenDAO();
         
         
 
         lisCiudadModels = ciudadesDao.findAll();
         listTiposEpsModel = tipoEpsDAO.findAll();
         listPeriodoAcademico = periodoAcademicoDAO.findAll();
-      
+        lisCategoriaSisbenModels= categoriaSisbenDao.findAll();
         
         listasGeneralModel.setLisCiudadModels(lisCiudadModels);
         listasGeneralModel.setListTiposEpsModel(listTiposEpsModel);
         listasGeneralModel.setListPeriodoAcademico(listPeriodoAcademico);
+        listasGeneralModel.setLisCategoriaSisbenModels(lisCategoriaSisbenModels);
       
         return listasGeneralModel;
     }

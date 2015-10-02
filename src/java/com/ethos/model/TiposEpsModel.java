@@ -10,31 +10,32 @@ package com.ethos.model;
  * @author EquipoNo9
  */
 public class TiposEpsModel {
-    private int ID_EPS;
-    private String NOMBRE_EPS;
+    private int id_Eps;
+    private String nombre_Eps;
 
     public TiposEpsModel() {
     }
 
-    public TiposEpsModel(int ID_EPS, String NOMBRE_EPS) {
-        this.ID_EPS = ID_EPS;
-        this.NOMBRE_EPS = NOMBRE_EPS;
+    public TiposEpsModel(int id_Eps, String nombre_Eps) {
+        this.id_Eps = id_Eps;
+        this.nombre_Eps = nombre_Eps;
     }
 
-    public int getID_EPS() {
-        return ID_EPS;
+    public int getId_Eps() {
+        return id_Eps;
     }
 
-    public void setID_EPS(int ID_EPS) {
-        this.ID_EPS = ID_EPS;
+    public void setId_Eps(int id_Eps) {
+        this.id_Eps = id_Eps;
     }
 
-    public String getNOMBRE_EPS() {
-        return NOMBRE_EPS;
+    public String getNombre_Eps() {
+        return nombre_Eps;
     }
 
-    public void setNOMBRE_EPS(String NOMBRE_EPS) {
-        this.NOMBRE_EPS = NOMBRE_EPS;
+    public void setNombre_Eps(String nombre_Eps) {
+        this.nombre_Eps = nombre_Eps;
     }
-    
+
+   
 }

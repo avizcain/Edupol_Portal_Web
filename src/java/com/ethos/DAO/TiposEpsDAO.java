@@ -57,8 +57,8 @@ public class TiposEpsDAO extends AbstractDAO<TiposEpsModel> {
           rsT=psQuery.executeQuery();
           while(rsT.next()){
            tiposEpsModel = new TiposEpsModel();
-           tiposEpsModel.setID_EPS(rsT.getInt(1));
-           tiposEpsModel.setNOMBRE_EPS(rsT.getString(2));
+           tiposEpsModel.setId_Eps(rsT.getInt(1));
+           tiposEpsModel.setNombre_Eps(rsT.getString(2));
            lisTipoEpsModel.add(tiposEpsModel);
            }
         } catch (SQLException e) {

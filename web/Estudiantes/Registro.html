@@ -175,14 +175,16 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-5">Categoría del Sisben:</label>
                                                     <div class="col-sm-6">
-                                                        <input type="text" id="sCategoriaSisben" name="sCategoriaSisben" ng-model="complementarios.person.idCategoriaSisben" ng-disabled="edit"  onkeypress="return isNumberKeySinCeroCuatroDigitos (event)" maxlength="1" placeholder="Categoría Sisben" required >
+                                                        <select id="categoriaSisben" name="categoriaSisben" data-ng-model="complementarios.person.sisben" data-ng-options="sisben as sisben.sDescripcionCategoriaSisben for sisben in complementarios.person.lisCategoriaSisbenModels track by sisben.iIdCategoriaSisben" required> 
+                                                            <option value="">Seleccione una Categoría</option>
+                                                        </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label class="col-sm-5">Entidad Promotora de Salud</label>
                                                     <div class="col-sm-6">
-                                                        <select id="EntidadPromotoraS" ng-model="complementarios.person.eps" data-ng-options="eps as eps.NOMBRE_EPS for eps in complementarios.person.listTiposEpsModel track by eps.ID_EPS" required >
+                                                        <select id="EntidadPromotoraS" ng-model="complementarios.person.eps" data-ng-options="eps as eps.nombre_Eps for eps in complementarios.person.listTiposEpsModel track by eps.id_Eps" required >
                                                             <option value="">Seleccione una EPS</option>
                                                            
                                                         </select>
@@ -195,7 +197,7 @@
                                                     <label class="col-sm-5">Nombre Escuela Secundaria:</label>
                                                     <div class="col-sm-6">
                                                         <div class="col-sm-6">
-                                                            <input type="text" id="sNombreEscuela" name="sNombreEscuela" ng-model="complementarios.person.nomEscuelaSecun" ng-disabled="edit" placeholder="Nombre escuela" onkeypress="return soloLetras(event)"  maxlength="35"  required>
+                                                            <input type="text" id="sNombreEscuela" name="sNombreEsc" ng-model="complementarios.person.nomEscu" ng-disabled="edit" placeholder="Nombre escuela" onkeypress="return soloLetras(event)"  maxlength="35"  required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -210,7 +212,7 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-5">Fecha de Graduación Secundaria:</label>
                                                     <div class="col-sm-6">
-                                                        <input id="fechaGraduacion" class="calendario" type="text" name="fechaGraduacion" ng-model="complementarios.person.fechaGradoSecunda" onkeypress="return inavilitarCampo (event)" placeholder="dd/mm/yyyy" maxlength="10" required>
+                                                        <input id="fechaGraduacion" class="calendario" type="text" name="fechaGraduacion" ng-model="complementarios.person.fecGraSec" onkeypress="return inavilitarCampo (event)" placeholder="dd/mm/yyyy" maxlength="10" required>
 
                                                     </div>
                                                 </div>
