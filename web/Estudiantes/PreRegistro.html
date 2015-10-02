@@ -1,0 +1,903 @@
+
+<!DOCTYPE html>
+<html lang="es" data-ng-app="appEdupol">
+    <head>
+        <title>..::Portal Cygnus::..</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="" />
+
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="../css/mastersheet.css" />
+        <link rel="stylesheet" type="text/css" href="../css/themes/theme1.css" />
+        <link rel="stylesheet" type="text/css" href="../css/themes/login.css" />
+        <link rel="stylesheet" type="text/css" href="../css/webfonts/unicons.css" />
+        <link rel="stylesheet" type="text/css" href="../css/revolution-slider.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../libs/rs-plugin/css/settings.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../libs/prettyphoto/css/prettyphoto.css" />
+        <link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.7.2.custom.css" /> <!-- css utilizado para calendario -->
+        <link rel="stylesheet" type="text/css" href="../css/estilos.css" />
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+        <script src="../js/controlNav.js"></script>
+        <!--<script src="../js/Datepicker.js"></script>-->
+        <script src="../js/PreRegistro.js"></script>
+        <script src="../js/layout.js"></script>
+        <script src="../libs/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../libs/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+        <script src="../libs/prettyphoto/jquery.prettyphoto.js"></script>
+        <script src="../libs/jquery.easing.min.js"></script>
+        <script src="../libs/jquery.scrollto-1.4.3.1-min.js"></script>
+        <script src="../libs/custom.js"></script>
+        <script src="../libs/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js"></script>
+        <!-- los dos ultimos script son para el funcionamiento del calendario -->
+        <!--<script src="../js/ValidarBotones.js"></script>--> 
+        <script src="../js/VAlidarTextoNumeros.js"></script> 
+
+
+    </head>
+    <body>
+        <div class="wrapper" >
+            <header id="menu" data-ng-controller="navegaController as navega" data-ng-include="'MenuIn.html'"></header>
+
+            <section class="section main-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">
+                            <header>
+                                <h1>Pre-Registro</h1>
+                            </header>
+
+                            <ul class="breadcrumb">
+                                <li>Estas aquí:</li>
+                                <li><a href="../Estudiantes/PreRegistro.html">Preregistro</a></li>
+                                <li>Columns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="includeLayout" class="section">
+                <div id="formInclude" data-ng-controller="PreRegistroController as actualiza"> 
+                    <form class="form-horizontal" data-ng-class="" name="myForm" data-ng-init="getDataFromServer()"  >
+                        <div>
+                            <div id="preRegistro" class="carousel slide" data-ride="carousel" data-interval="false">
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner" role="listbox">
+
+                                    <div id="pantallaEstudiantes" class="item active" role="presentation">
+                                        <fieldset>
+                                            <div class="Encabezado">
+                                                <h1>INFORMACION PERSONAL</h1>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group ">
+                                                    <label class="col-sm-5">Tipo de Solicitud:</label>
+                                                    <div class="col-sm-6"  >
+                                                        <select class="DatosAlum" id="TipoSolicitud" data-ng-model="actualiza.person.PreRegistro.estudiante.TipoSol" data-ng-options="TipoSol as TipoSol.sNombreSolicitud for TipoSol in actualiza.person.lisTipoSolicitudModels track by TipoSol.iId_tipoSolicitud" convert-to-number required>
+                                                            <option value="">Seleccione un tipo de solicitud</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div> 
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nacionalidad:</label>
+                                                    <div class="col-sm-6" id="required" >
+                                                        <select class="DatosAlum" id="Nacionalidad" data-ng-model="actualiza.person.PreRegistro.estudiante.Nacionalidad" data-ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.person.lisCiudadModels track by ciudad.sCodigo" convert-to-number required>
+                                                            <option value="">Seleccione su Nacionalidad</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+                                                
+                                                  <div class="form-group">
+                                                    <label class="col-sm-5">Fecha Nacimiento:</label>
+                                                    <div class="col-sm-6">
+                                                        <input  type="text" class="calendario" id="sFechaNacimiento" name="sFechaNacimiento" data-ng-model="actualiza.person.PreRegistro.estudiante.FechaNac" data-ng-disabled="edit" placeholder="dd/mm/yyyy" required>
+
+                                                    </div> 
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+                                                <!-- <div class="form-group">
+                                                     <label class="col-sm-5">Lugar de Nacimiento:</label>
+                                                     <div class="col-sm-6" >
+     
+                                                         <input class="DatosAlum" type="text" id="sLugarNac"  name="sLugarNac"   data-ng-model="actualiza.person.PreRegistro.estudiante.lugarNacimiento" data-ng-disabled="edit"  placeholder="Ingrese lugar de Nacimiento" onkeypress="return soloLetras(event)" maxlength="25" required><img src="../images/red_asterisk.png">                                        
+     
+                                                     </div>
+                                                 </div>-->
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo Identificación:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatosAlum" name="TipoIdentificacion" id="TipoIdentificacion" data-ng-model="actualiza.person.PreRegistro.estudiante.Tipoiden"  data-ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number required>
+                                                            <option value="">Seleccione tipo de identificacion</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Lugar de Expedición:</label>
+                                                    <div class="col-sm-6" >
+                                                        <input class="DatosAlum" type="text"  id="sLugarExped"  name="sLugarExped" data-ng-model="actualiza.person.PreRegistro.estudiante.LugarExp" data-ng-disabled="edit" placeholder="Ingrese lugar de Expedición" onkeypress="return soloLetras(event)" maxlength="25" >
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Primer Nombre:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text"   id="sPrimerNombre" name="sPrimerNombre" data-ng-model="actualiza.person.PreRegistro.estudiante.PriNombre" data-ng-disabled="edit" placeholder="Ingrese primer Nombre" onkeypress="return soloLetras(event)" maxlength="25" required >
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Primer Apellido:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text"  id="sPrimerApellido" name="sPrimerApellido"  data-ng-model="actualiza.person.PreRegistro.estudiante.PriApellido" data-ng-disabled="edit" placeholder="Ingrese primer Apellido" onkeypress="return soloLetras(event)" maxlength="25" required >
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                               
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Categoría Sisben:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatosAlum" data-ng-model="actualiza.person.PreRegistro.estudiante.categoriaSisben" data-ng-options="sisben as sisben.sDescripcionCategoriaSisben for sisben in actualiza.person.lisCategoriaSisbenModels track by sisben.iIdCategoriaSisben" convert-to-number onkeypress="return isNumberKey(event)" required> 
+                                                            <option value="">Seleccione una Categoría</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nivel Educativo:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="NivelEduc" name="NivelEduc" class="DatosAlum" data-ng-model="actualiza.person.PreRegistro.estudiante.NivelEducativo" data-ng-options="nivelEstudios as nivelEstudios.sDescripcion for nivelEstudios in actualiza.person.lisNivelEstudiosModels track by nivelEstudios.sCodigo" convert-to-number required>
+                                                            <option value="">Seleccione su nivel de estudios</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad de Nacimiento:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <input class="DatosAlum" type="text" id="sCiudadNacimiento" name="sCiudadNacimiento" data-ng-model="actualiza.person.PreRegistro.estudiante.ciudadNacimiento" data-ng-disabled="edit" placeholder="Ingrese Ciudad de Nacimiento " onkeypress="return soloLetras(event)" maxlength="25" required>
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                               <div class="form-group">
+                                                    <label class="col-sm-5">Género:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="Genero" name="Genero" class="DatosAlum" data-ng-model="actualiza.person.PreRegistro.estudiante.genero" data-ng-options="genero as genero.sDescripcion for genero in actualiza.person.lisGeneroModels track by genero.iIdGenero" required>
+                                                            <option value="">Seleccione Género</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Número de identificación:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text" id="sNumeroIdentificacion" name="sNumeroIdentificacion" data-ng-model="actualiza.person.PreRegistro.estudiante.NumIdentificacion" data-ng-disabled="edit" placeholder="Número de identificación" onkeypress="return isNumberKey(event)" maxlength="15" required >
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Fecha Expedición:</label>
+                                                    <div class="col-sm-6">
+                                                        <input  type="text" class="calendario" id="sFechaExpedicionEst" name="sFechaExpedicionEst" data-ng-model="actualiza.person.PreRegistro.estudiante.fechaExp" data-ng-disabled="edit" placeholder="dd/mm/yyyy" required >
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Segundo Nombre:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text" id="sSegundoNombre" name="sSegundoNombre" data-ng-model="actualiza.person.PreRegistro.estudiante.segNombre" data-ng-disabled="edit" placeholder="Ingrese Segundo Nombre" onkeypress="return soloLetras(event)" maxlength="25" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Segundo Apellido:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text" id="sSegundoApellido" name="sSegundoApellido" data-ng-model="actualiza.person.PreRegistro.estudiante.SegApellido" data-ng-disabled="edit" placeholder="Ingrese Segundo Apellido" onkeypress="return soloLetras(event)" maxlength="25" >
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="Encabezado">
+                                                <h1>INFORMACION RESIDENCIA</h1>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">País Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="paisRes" name="paisRes" class="DatosAlum" data-ng-model="actualiza.person.PreRegistro.estudiante.paisRes" data-ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.person.lisCiudadModels track by ciudad.sCodigo" data-ng-change="actualiza.listasPais(1, 1)" convert-to-number required>
+                                                            <option value="">Seleccione País Residencia</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="CiudadRes" name="CiudadRes" class="DatosAlum" data-ng-model="actualiza.person.PreRegistro.estudiante.ciudadRes" data-ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.ciudad.lisCiudadModels track by ciudad.sCodigo" convert-to-number required>
+                                                            <option value="">Seleccione una Ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Barrio Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text" id="sBarrioResidencia" name="sBarrioResidencia" data-ng-model="actualiza.person.PreRegistro.estudiante.BarrioRes" data-ng-disabled="edit" placeholder="Ingrese barrio Residencia" maxlength="25" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Libreta Militar:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text" id="sNumeroLibretaMilitar" name="sNumeroLibretaMilitar" data-ng-model="actualiza.person.PreRegistro.estudiante.LibretaMilitar" data-ng-disabled="edit" placeholder="Numero libreta Militar" onkeypress="return isNumberKey(event)" maxlength="15" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Teléfono Fijo</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text" id="sTelefonoFijo" name="sTelefonoFijo" data-ng-model="actualiza.person.PreRegistro.estudiante.tel" data-ng-disabled="edit" placeholder="Ingrese teléfono Fijo" onkeypress="return isNumberKey(event)" maxlength="15" required>
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Email</label>
+                                                    <div class="col-sm-6">
+                                                        <input  type="text" id="sEmail" name="sEmail" data-ng-model="actualiza.person.PreRegistro.estudiante.email" data-ng-disabled="edit" pattern="[a-zA-Z0-9_.+-]+\@[a-zA-Z0-9-]+\.+[a-zA-Z0-9]{2,4}" placeholder="INGRESE EMAIL" maxlength="35" required>
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Departamento Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="DepartamentoRes" name="DepartamentoRes" class="DatosAlum" data-ng-model="actualiza.person.PreRegistro.estudiante.depRes" data-ng-options="depto as depto.sNombre for depto in actualiza.Departamento.lisCiudadModels track by depto.sCodigo" data-ng-change="actualiza.listasPais(2, 1)" convert-to-number required>
+                                                            <option value="">Seleccione un Departamento</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Localidad Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text" id="sLocalidadResidencia" name="sLocalidadResidencia" data-ng-model="actualiza.person.PreRegistro.estudiante.locRes" data-ng-disabled="edit"  placeholder="Ingrese localidad Residencia" onkeypress="return soloLetras(event)" maxlength="25">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Dirección Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum"  type="text"  id="sDireccionResidencia" name="sDireccionResidencia" data-ng-model="actualiza.person.PreRegistro.estudiante.dirRes" data-ng-disabled="edit" placeholder="Ingrese Dirección" maxlength="25" required>
+
+                                                    </div> 
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Estado Civil:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="EstadoCivil" name="EstadoCivil" class="DatosAlum" data-ng-model="actualiza.person.PreRegistro.estudiante.estCivil" data-ng-options="estado as estado.sDescripcionEstCivil for estado in actualiza.person.lisEstadoCivilModels track by estado.sCodigoEstadoCivil" convert-to-number required>
+                                                            <option value="">Seleccione un estado civil</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Teléfono Móvil</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAlum" type="text" id="sTelefonoMovil" name="sTelefonoMovil" data-ng-model="actualiza.person.PreRegistro.estudiante.telMovil" data-ng-disabled="edit" placeholder=" Ingrese Teléfono Móvil" onkeypress="return isNumberKey(event)" maxlength="15" required>
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Grupos Sanguíneo (RH)</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="GrupoSanguineo" name="GrupoSanguineo" class="DatosAlum"  data-ng-model="actualiza.person.PreRegistro.estudiante.rh" data-ng-options="rh as rh.sNombreSangre for rh in actualiza.person.listipoSanguineoModels track by rh.iCodigoTipoSangre" convert-to-number required>
+                                                            <option value="">Seleccione un Grupos Sanguíneo</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">                                                
+                                                </div>
+                                            </div>
+                                        </fieldset>    
+                                    </div>
+
+
+                                    <!--data-ng-if="actualiza.edad < 18"-->
+                                    <div  id="FormularioAcudiente" class="item"  data-ng-if="!actualiza.esMenor" data-ng-init="actualiza.validaBotones()" role="presentation" >
+                                        <h1>DATOS ACUDIENTE</h1>
+                                        <br/>
+                                        <br/>
+
+                                        <fieldset>
+                                            <div class="Encabezado">
+                                                <h1>Información Personal</h1>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo Identificación:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatosAcud" id="TipoIdAcu" name="TipoIdAcu" data-ng-model="actualiza.person.PreRegistro.acudiente.tipIden" data-ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number required>
+                                                            <option value="" class="D_acu">Seleccione Tipo Identificación</option>
+                                                        </select>
+
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Fecha Expedición:</label>
+                                                    <div class="col-sm-6">
+                                                        <input  type="text" class="calendario" id="sFechaExpedicionAcu"  name="sFechaExpedicionAcu" data-ng-model="actualiza.person.PreRegistro.acudiente.fechExp" data-ng-disabled="edit" placeholder="dd/mm/yyyy" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Primer Nombre:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text"  id="sPrimerNombreA" name="sPrimerNombreA" data-ng-model="actualiza.person.PreRegistro.acudiente.priNombre" data-ng-disabled="edit" placeholder="Ingrese primer Nombre" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Primer Apellido:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text"  id="sPrimerApellidoA" name="sPrimerApellidoA" data-ng-model="actualiza.person.PreRegistro.acudiente.priApellido" data-ng-disabled="edit" placeholder="Ingrese primer Apellido" onkeypress="return soloLetras(event)" maxlength="25" required >
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">País Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatosAcud" id="PaisResidenciaA" name="PaisResidenciaA" data-ng-model="actualiza.person.PreRegistro.acudiente.paisRes" data-ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.person.lisCiudadModels track by ciudad.sCodigo" data-ng-change="actualiza.listasPais(1, 2)" convert-to-number required>
+                                                            <option value="" >Seleccione su País</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatosAcud" id="CiudadA" name="CiudadA" data-ng-model="actualiza.person.PreRegistro.acudiente.ciudRes" data-ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.ciudadAcudiente.lisCiudadModels track by ciudad.sCodigo" convert-to-number required>
+                                                            <option value="">Seleccione una Ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Teléfono Fijo</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sTelefonoFijoA" name="sTelefonoFijoA" data-ng-model="actualiza.person.PreRegistro.acudiente.telFij" data-ng-disabled="edit" placeholder="Ingrese teléfono Fijo" onkeypress="return isNumberKey(event)" maxlength="15" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Email</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text"  id="sEmailA" name="sEmailA" data-ng-model="actualiza.person.PreRegistro.acudiente.email" pattern="[a-zA-Z0-9_.+-]+\@[a-zA-Z0-9-]+\.+[a-zA-Z0-9]{2,4}" data-ng-disabled="edit" placeholder="INGRESE EMAIL" maxlength="35" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Número de identificación:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text"  id="sNumeroIdentificacionA" name="sNumeroIdentificacionA" data-ng-model="actualiza.person.PreRegistro.acudiente.numIden" data-ng-disabled="edit" placeholder="Ingrese Número Identifiación" onkeypress="return isNumberKey(event)" maxlength="15" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Género:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatosAcud" id="generoA" name="generoA" data-ng-model="actualiza.person.PreRegistro.acudiente.genero" data-ng-options="genero as genero.sDescripcion for genero in actualiza.person.lisGeneroModels track by genero.iIdGenero" required>
+                                                            <option value="" >Seleccione Género</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Segundo Nombre:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text"  id="sSegundoNombreA" name="sSegundoNombreA" data-ng-model="actualiza.person.PreRegistro.acudiente.segNombre" data-ng-disabled="edit" placeholder="Ingrese segundo Nombre" onkeypress="return soloLetras(event)" maxlength="25" >
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Segundo Apellido:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text"  id="sSegundoApellidoA" name="sSegundoApellidoA" data-ng-model="actualiza.person.PreRegistro.acudiente.segApellido" data-ng-disabled="edit" placeholder="Ingrese segundo Apellido" onkeypress="return soloLetras(event)" maxlength="25" >
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Departamento Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatosAcud" id="DepartamentoResiAc" name="DepartamentoResiAc" data-ng-model="actualiza.person.PreRegistro.acudiente.depRes" data-ng-options="depto as depto.sNombre for depto in actualiza.DepartamentoAcudiente.lisCiudadModels track by depto.sCodigo" data-ng-change="actualiza.listasPais(2, 2)" convert-to-number required>
+                                                            <option value="">Seleccione un Departamento</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Dirección Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sDireccionResidenciaA" name="sDireccionResidenciaA" data-ng-model="actualiza.person.PreRegistro.acudiente.dirRes" data-ng-disabled="edit" placeholder="Ingrese Dirección Residencia" maxlength="25" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Teléfono Móvil</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text"  id="sTelefonoFijoA" name="sTelefonoFijoA" data-ng-model="actualiza.person.PreRegistro.acudiente.telMovil" data-ng-disabled="edit" placeholder="Ingrese Teléfono Móvil" onkeypress="return isNumberKey(event)" maxlength="15" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+
+                                            </div>    
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="Encabezado"> 
+                                                <h1>Información Adicional</h1>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Trabaja Actualmente:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="sTrabajaActual" name="sTrabajaActual" data-ng-model="actualiza.person.PreRegistro.acudiente.trabaja" data-ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="sNoTrabajaActual" name="sTrabajaActual" data-ng-model="actualiza.person.PreRegistro.acudiente.trabaja" data-ng-disabled="edit"  data-ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tiempo Trabajando:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sTiempoContrato" name="sTiempoContrato" data-ng-model="actualiza.person.PreRegistro.acudiente.tiempoTrabajo" data-ng-disabled="edit" placeholder="Meses" onkeypress="return isNumberKey(event)" maxlength="3" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo de Contrato:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sTipoContrato" name="sTipoContrato" data-ng-model="actualiza.person.PreRegistro.acudiente.tipContrato" data-ng-disabled="edit" placeholder="Ingrese tipo de contrato" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo Vivienda:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="TipoVivienda" class="DatosAcud" data-ng-model="actualiza.person.PreRegistro.acudiente.tipVivienda"  convert-to-number>
+                                                            <option value="">Seleccione tipo de vivienda</option>
+                                                            <option value="Propia">Propia</option>
+                                                            <option value="Familiar">Familiar</option>
+                                                            <option value="Arriendo">Arriendo</option>
+                                                        </select>
+                                                    </div>   
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Vehículo:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sVehiculo" name="sVehiculo" data-ng-model="actualiza.person.PreRegistro.acudiente.vehiculo1" data-ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sNoVehiculo" name="sVehiculo" data-ng-model="actualiza.person.PreRegistro.acudiente.vehiculo1" data-ng-disabled="edit" data-ng-checked="true"  value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ingresos por arrendamiento</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sIngresoArrendamiento" name="sIngresoArrendamiento" data-ng-model="actualiza.person.PreRegistro.acudiente.arrendamiendo" data-ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sNoIngresoArrendamiento" name="sIngresoArrendamiento" data-ng-model="actualiza.person.PreRegistro.acudiente.arrendamiendo" data-ng-disabled="edit" data-ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ingresos por pensión</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sIngresoPension" name="sIngresoPension" data-ng-model="actualiza.person.PreRegistro.acudiente.pension" data-ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sNoIngresoPension" name="sIngresoPension" data-ng-model="actualiza.person.PreRegistro.acudiente.pension" data-ng-disabled="edit" data-ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Otros Ingresos</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sOtrosIngresos" name="sOtrosIngresos" data-ng-model="actualiza.person.PreRegistro.acudiente.otros" data-ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sNoOtrosIngresos" name="sOtrosIngresos" data-ng-model="actualiza.person.PreRegistro.acudiente.otros" data-ng-disabled="edit" data-ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tarjeta de crédito</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sTargetaCredito" name="sTargetaCredito" data-ng-model="actualiza.person.PreRegistro.acudiente.tarjetaCredito" data-ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sNoTargetaCredito" name="sTargetaCredito" data-ng-model="actualiza.person.PreRegistro.acudiente.tarjetaCredito" data-ng-disabled="edit" data-ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Crédito Actuales </label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sCreditoActual" name="sCreditoActual" data-ng-model="actualiza.person.PreRegistro.acudiente.creditosAct" data-ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sNoCreditoActual" name="sCreditoActual" data-ng-model="actualiza.person.PreRegistro.acudiente.creditosAct" data-ng-checked="true" data-ng-disabled="edit" value="N">No</label>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">valor obligaciones financieras:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sObligacionesFinan" name="sObligacionesFinan" data-ng-model="actualiza.person.PreRegistro.acudiente.valorObli" data-ng-disabled="edit" placeholder="Ingrese obligaciones" onkeypress="return isNumberKey(event)" maxlength="15" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+
+
+                                            </div>
+
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Trabaja como:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sEmpleado" name="sEmpleado" data-ng-model="actualiza.person.PreRegistro.acudiente.tipTrabajo" data-ng-disabled="edit" value="E">Empleado</label>
+                                                        <label style="width:118px;margin-left: -19px" class="radio-inline col-sm-6"><input type="radio" class="DatosAcud" id="sDesEmpleado" name="sEmpleado" data-ng-model="actualiza.person.PreRegistro.acudiente.tipTrabajo" data-ng-disabled="edit" value="I">Independiente</label>
+                                                    </div> 
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Empresa en la que trabaja</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sNombreEmp" name="sNombreEmp" data-ng-model="actualiza.person.PreRegistro.acudiente.nomEmpresa" data-ng-disabled="edit" placeholder="Ingrese Empresa en la que trabaja" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ocupación:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sOcupacion" name="sOcupacion" data-ng-model="actualiza.person.PreRegistro.acudiente.ocupacion" data-ng-disabled="edit" placeholder="Ingrese Ocupación" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Salario</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sSalario" name="sSalario" data-ng-model="actualiza.person.PreRegistro.acudiente.salario" data-ng-disabled="edit" placeholder="Ingrese Salario" onkeypress="return isNumberKey(event)" maxlength="15" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+
+                                                <div class="form-group" id="sCualVehiculo1" >
+                                                    <label class="col-sm-5">¿Cúal?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sCualVehiculo" name="sCualVehiculo" data-ng-model="actualiza.person.PreRegistro.acudiente.vehiculo" data-ng-disabled="edit" placeholder="¿Cúal Vehículo?" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group" id="sCuantoSalario1">
+                                                    <label class="col-sm-5">¿Cuanto?</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sCuantoSalario" name="sCuantoSalario" data-ng-model="actualiza.person.PreRegistro.acudiente.IngresosArr" data-ng-disabled="edit" placeholder="Ingresos por Arriendo" onkeypress="return isNumberKey(event)" maxlength="15" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+
+                                                <div class="form-group" id="sPensioSalario1">
+                                                    <label class="col-sm-5">¿Cuanto?</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sPensioSalario" name="sPensioSalario" data-ng-model="actualiza.person.PreRegistro.acudiente.ingresosPension" data-ng-disabled="edit" placeholder="Ingresos por Pensión" onkeypress="return isNumberKey(event)" maxlength="15" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+
+                                                <div class="form-group" id="sOtroIngresoCu1">
+                                                    <label class="col-sm-5">¿Cúal y Cuánto?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="DatosAcud" id="sOtroIngresoCu" name="ssOtroIngresoCu" data-ng-model="actualiza.person.PreRegistro.acudiente.nombreIngresos" data-ng-disabled="edit" placeholder="¿Cúal Ingreso?" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                        <input type="text" class="DatosAcud" id="sCuantoIngreso" name="sCuandtoIngreso" data-ng-model="actualiza.person.PreRegistro.acudiente.otrosIngresos" data-ng-disabled="edit" placeholder="¿Cuánto?" onkeypress="return isNumberKey(event)" maxlength="15" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+                                                <div class="form-group" style="margin-top: 5%;" id="sCualTargeta1" >
+                                                    <label class="col-sm-5">¿Cúal?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sCualTargeta" name="sCualTargeta" data-ng-model="actualiza.person.PreRegistro.acudiente.nomTarjeta" data-ng-disabled="edit" placeholder="¿Cúal tarjeta?" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+
+                                                <div class="form-group" id="sCualCredito1" >
+                                                    <label class="col-sm-5">¿Cúal?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatosAcud" type="text" id="sCualCredito" name="ssCualCredito" data-ng-model="actualiza.person.PreRegistro.acudiente.nomCredito" data-ng-disabled="edit" placeholder="¿Cúal credito?" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Como se entero de Edupol:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="ConocimientoEdupol" class="DatosAcud"  data-ng-model="actualiza.person.PreRegistro.acudiente.medioMasivo"  data-ng-options='medioMasivo as medioMasivo.sNombreMedioMasivo for medioMasivo in actualiza.person.lisMediosMasivosModels track by medioMasivo.iIdMediosMasivos' convert-to-number required>
+                                                            <option value="">Seleccione medio Masivo</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png"> 
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>  
+
+
+                                    <div  class="item" role="presentation">
+                                        <h1>DATOS ACADÉMICOS</h1>
+                                        <br/>
+                                        <br/>
+
+                                        <fieldset>
+                                            <div class="Encabezado">
+                                                <h1>Información Académica</h1>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">País donde desea estudiar:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatAcade" id="PaisEStudiar" data-ng-model="actualiza.person.PreRegistro.estudiante.paisEstudio" data-ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.person.lisCiudadModels track by ciudad.sCodigo" data-ng-change="actualiza.listasPais(1, 3)" convert-to-number required>
+                                                            <option value="">Seleccione su Nacionalidad</option>
+                                                        </select> 
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad donde desea estudiar:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="CiudadEStudiar" class="DatAcade" data-ng-model="actualiza.person.PreRegistro.estudiante.ciudadEstudio" data-ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.ciudadEstudio.lisCiudadModels track by ciudad.sCodigo" data-ng-change="actualiza.listasPais(3, 3)" convert-to-number required>
+                                                            <option value="">Seleccione una ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Universidad:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="Universidad" class="DatAcade" data-ng-model="actualiza.person.PreRegistro.estudiante.infoUni.Universidad" data-ng-options="universidad as universidad.sDescripcion for universidad in actualiza.person.lisUniversidadesModels track by universidad.iCodUniversidad" data-ng-change="actualiza.actualizaUni(1)" convert-to-number required >
+                                                            <option value="">Seleccione una ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo de Estudio</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="TipoEStudio" name="TipoEStudio" class="DatAcade" data-ng-model="actualiza.person.PreRegistro.estudiante.infoUni.tipEstudio" data-ng-options="tipEstudio as tipEstudio.sDescripcion for tipEstudio in actualiza.nivelEstudio.lisNivelEstudiosModels track by tipEstudio.sCodigo" data-ng-change="actualiza.actualizaUni(3)" convert-to-number required>
+                                                            <option value="">Seleccione un tipo de estudio</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Programa Académico:</label>
+                                                    <div class="col-sm-6">
+                                                        <select class="DatAcade" id="ProgramaAcademico" name="ProgramaAcademico" data-ng-model="actualiza.person.PreRegistro.estudiante.infoUni.ProgramaAcademico" data-ng-options="programa as programa.sDescripcion for programa in actualiza.programas.listProgramasModels track by programa.iCodPrograma" convert-to-number required>
+                                                            <option value="">Seleccione un programa</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Contraseña:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatAcade" type="password" id="sContraseña" name="sContraseña" data-ng-model="actualiza.person.PreRegistro.estudiante.Contrasena" data-ng-disabled="edit" placeholder="Contraseña" maxlength="4" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Departamento donde desea estudiar:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="DepEstudio" class="DatAcade" data-ng-model="actualiza.person.PreRegistro.estudiante.depEstudio" data-ng-options="depEst as depEst.sNombre for depEst in actualiza.DepartamentoEstudio.lisCiudadModels track by depEst.sCodigo" data-ng-change="actualiza.listasPais(2, 3)" convert-to-number required>
+                                                            <option value="">Seleccione un departamento</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Centro Asociado:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="CentrosAsociados" class="DatAcade" data-ng-model="actualiza.person.PreRegistro.estudiante.centroAsociado" data-ng-options="centroAsociado as centroAsociado.sDescipcion for centroAsociado in actualiza.centroAsociado.listCentroAsociadoModels track by centroAsociado.iCodCentroAsociado" convert-to-number required>
+                                                            <option value="">Seleccione un centro</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nivel de Formación:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="NivelFormacion" class="DatAcade" data-ng-model="actualiza.person.PreRegistro.estudiante.infoUni.NivelFormacion" data-ng-options="nivelFormacion as nivelFormacion.descripcion for nivelFormacion in actualiza.nivelFormacio.listNivelFormacionModels track by nivelFormacion.iCod_NivelFormacion" data-ng-change="actualiza.actualizaUni(2)" convert-to-number required>
+                                                            <option value="">Seleccione un nivel</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Grupo Programa Académico:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="GrupoProgramaAcademico" name="GrupoProgramaAcademico" class="DatAcade" data-ng-model="actualiza.person.PreRegistro.estudiante.infoUni.GrupoProgramaAcademico" data-ng-options="grupoPrograma as grupoPrograma.sDescripcion for grupoPrograma in actualiza.grupoPrograma.listGrupoProgramasModels track by grupoPrograma.iIdGrupo" data-ng-change="actualiza.actualizaUni(4)" convert-to-number required>
+                                                            <option value="">Seleccione un programa</option>
+                                                        </select>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Estrato:</label>
+                                                    <div class="col-sm-6">
+                                                        <input id="EstratoAc" class="DatAcade" type="text"  name="sSegundoApellido" data-ng-model="actualiza.person.PreRegistro.estudiante.estrato" data-ng-disabled="edit" placeholder="Estrato" onkeypress="return isNumberKeySinCeroCuatroDigitos(event)" maxlength="1" required>
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Confirmar Contraseña:</label>
+                                                    <div class="col-sm-6">
+                                                        <input class="DatAcade" type="password" id="sconfContraseña" name="sconfContraseña"  data-ng-disabled="edit" placeholder="Confirmar Contraseña" maxlength="4">
+                                                    </div>
+                                                    <img alt="imgObligatorio" src="../images/red_asterisk.png">    
+                                                </div>
+                                            </div>    
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <div class="Encabezado">
+                                                <h1>Información Edupol</h1>
+                                            </div>
+                                            <br/>
+                                            <br/>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Como se enteró de Edupol?:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="ConocimientoEdupol" class="DatAcade" data-ng-model="actualiza.person.PreRegistro.estudiante.infoEdupol" data-ng-options="medioMasivo as medioMasivo.sNombreMedioMasivo for medioMasivo in actualiza.person.lisMediosMasivosModels track by medioMasivo.iIdMediosMasivos" convert-to-number required>
+                                                            <option value="">Seleccione una opción</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+
+                                    <!-- Indicators -->
+                                </div>
+                                <ol class="carousel-indicators">
+                                    <li  data-target="#preRegistro" data-slide-to="0" id="princi" data-ng-click="actualiza.obtenerEdad()"></li>
+                                    <li  data-target="#preRegistro" data-slide-to="1"  id="ValidEstu"  data-ng-click="actualiza.obtenerEdad()"></li>
+                                    <li  data-target="#preRegistro" data-slide-to="2"   id="ValidAcu" data-ng-show="!actualiza.esMenor"  data-ng-click="actualiza.obtenerEdad()"></li>
+                                </ol>
+
+                                <!-- Left and right controls -->
+                            </div>
+
+                            <a class="left carousel-control" href="#preRegistro" role="button" data-slide="prev" data-ng-click="actualiza.obtenerEdad()">
+                                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" ></span>
+                                <span class="sr-only"></span>
+                            </a>
+                            <a class="right carousel-control" href="#preRegistro"  role="button" id="next" data-slide="next" data-ng-click="actualiza.obtenerEdad()">
+                                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                <span class="sr-only"></span>
+                            </a>
+                            <br/>
+
+                            <button type="submit" id="enviar" class="btn btn-success " data-ng-click="actualiza.save()" >
+                                Registrar Datos
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <section id="prefooter" class="section" data-ng-include="'PreFooter.html'"></section>
+            <footer id="footer" class="section" data-spacing="none" data-ng-include="'Footer.html'"></footer>
+        </div>
+        <!--<script src="../js/layout.js"></script>-->
+    </body>
+</html>
+
+
+
+
+
+

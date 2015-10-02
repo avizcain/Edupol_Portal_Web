@@ -1,0 +1,202 @@
+body {
+    background: #162e3d;
+}
+main a:hover {
+    color: #2980b9;
+}
+.button.cta-primary {
+    background-color: #d35400;
+}
+.button.cta-primary:hover {
+    background-color: #e67e22;
+}
+.button.cta-primary:active {
+    background-color: #d35400;
+}
+.button.cta-secondary {
+    background-color: #2980b9;
+}
+.button.cta-secondary:hover {
+    background-color: #3498db;
+}
+.button.cta-secondary:active {
+    background-color: #2980b9;
+}
+.button.cta-tertiary {
+    background-color: #525252;
+}
+.button.cta-tertiary:hover {
+    background-color: #727272;
+}
+.button.cta-tertiary:active {
+    background-color: #525252;
+}
+header.navigator ul li a:hover {
+    background: #2980b9;
+}
+header.navigator ul li a:hover [class*="icon-"] {
+    color: #ffffff;
+}
+header.navigator ul li a:active {
+    background: #f9fafa;
+}
+header.navigator ul li a:active [class*="icon-"] {
+    color: #c6c9ce;
+}
+blockquote {
+    border-left: 4px solid #2980b9;
+}
+#top {
+    border-color: #3498db;
+}
+#top .navbar .nav > li .line {
+    background: #3498db;
+}
+#top .navbar .nav > li a:hover,
+#top .navbar .nav > li a:focus {
+    color: #3498db;
+}
+#top .navbar .nav > li.active:hover,
+#top .navbar .nav > li.active:focus {
+    border: 0;
+}
+#top .navbar .nav > li.active > a {
+    color: #3498db;
+}
+#top .navbar .dropdown-menu {
+    background-color: #2980b9;
+}
+#top .navbar .dropdown-menu > li > a {
+    color: #ffffff;
+}
+#top .navbar .dropdown-menu > li > a:hover,
+#top .navbar .dropdown-menu > li > a:focus {
+    color: #ffffff;
+    background: #3498db;
+}
+#top .navbar .dropdown .dropdown-menu li.stack.open {
+    background: #3498db;
+}
+#top .navbar .dropdown-menu:after {
+    border-bottom: 6px solid #2980b9;
+}
+.main-header {
+    background: #2980b9;
+}
+.main-header .breadcrumb {
+    color: #c4dceb;
+}
+.cta-header {
+    background: #2980b9;
+    color: #ffffff;
+}
+.cta-header .cta {
+    background: #d35400;
+}
+.table.featured {
+    background: #2980b9;
+}
+.table.featured thead th {
+    color: #c4dceb;
+}
+.table.featured tbody td.price {
+    background: #3498db;
+}
+.table.featured tbody td ul li {
+    color: #c4dceb;
+}
+.progress .bar {
+    background: #2980b9;
+}
+.slider .pane {
+    background: #2980b9;
+    color: #c4dceb;
+}
+.slider .pane ul li a {
+    background: #3498db;
+}
+.slider .pane ul li a:hover {
+    background: #3db1ff;
+}
+.slider .pane ul li a:active {
+    background: #3498db;
+}
+.slider .slideshow .item header a:hover {
+    color: #2980b9;
+}
+.slider .slideshow .item figcaption {
+    background: #2980b9;
+}
+.slider .slideshow .item .link {
+    background: #3498db;
+}
+.slider .slideshow .item .link:hover {
+    background: #3db1ff;
+}
+.slider .slideshow .item .link:active {
+    background: #3498db;
+}
+.widget-tabs nav li a {
+    -webkit-transition: all 0.25s ease-in-out 0s;
+    -moz-transition: all 0.25s ease-in-out 0s;
+    -o-transition: all 0.25s ease-in-out 0s;
+    transition: all 0.25s ease-in-out 0s;
+    background-color: #2980b9;
+}
+.widget-tabs nav li a:hover {
+    background-color: #3498db;
+}
+.widget-tabs nav li.active a,
+.widget-tabs nav li.active a:hover,
+.widget-tabs nav li.active a:focus {
+    background-color: #ecf0f1;
+}
+.widget-accordion ul li [class*="icon-"] {
+    color: #2980b9;
+}
+.revolution-slider .tp-leftarrow,
+.revolution-slider .tp-rightarrow {
+    background-color: #2980b9 !important;
+}
+.slideshow-simple .navigo a.prev,
+.slideshow-simple .navigo a.next {
+    background-color: #2980b9 !important;
+}
+.portfolio .item figcaption {
+    background: #2980b9;
+}
+.portfolio .item .link {
+    background: #3498db;
+}
+.portfolio .item .link:hover {
+    background: #3db1ff;
+}
+.portfolio .item .link:active {
+    background: #3498db;
+}
+@media (max-width: 979px) {
+    #top .navbar .btn-navbar {
+        background: #3498db;
+    }
+    #top .navbar .btn-navbar:hover {
+        background: #3db1ff;
+    }
+    #top .navbar .btn-navbar:active {
+        background: #3498db;
+    }
+}
+
+.panel.panel-Registro {
+
+    background-color: #E5E5F1;
+    border-color: #F5F3F3;
+    border-radius: 5px;
+    border-style: solid;
+    padding: 1%;
+    width: 97%;
+    margin-bottom: 1px;
+}
+
+.labelRadio{
+    font-weight: 400;
+}

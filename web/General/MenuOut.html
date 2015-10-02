@@ -1,0 +1,307 @@
+    <!DOCTYPE html>
+<html lang="es" data-ng-app="appEdupol">
+    <head>
+        <title>..::Portal Cygnus::..</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="" />
+
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="./css/mastersheet.css" />
+        <link rel="stylesheet" type="text/css" href="./css/themes/theme1.css" />
+        <link rel="stylesheet" type="text/css" href="./css/themes/login.css" />
+        <link rel="stylesheet" type="text/css" href="./css/webfonts/unicons.css" />
+        <link rel="stylesheet" type="text/css" href="./css/revolution-slider.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="./libs/rs-plugin/css/settings.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="./libs/prettyphoto/css/prettyphoto.css" />
+        <!--<link rel="import" href="../Layout/LayoutIn.html" />-->
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+        <script src="./js/controlNav.js"></script>
+        <script src="./js/layout.js"></script>
+        <script src="./libs/jquery.min.js"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./libs/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+        <script src="./libs/prettyphoto/jquery.prettyphoto.js"></script>
+        <script src="./libs/jquery.easing.min.js"></script>
+        <script src="./libs/jquery.scrollto-1.4.3.1-min.js"></script>
+        <script src="./libs/custom.js"></script>
+        <script src="./libs/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <!--<script src="../js/ui-bootstrap-tpls-0.13.0.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-transition.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-collapse.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-dropdown.js"></script>-->
+        <!--<script src="../libs/retina/retina.js"></script>-->
+        
+    </head>
+    <body>
+        <div class="wrapper" >
+            <header id="menu" ng-include="'MenuOut.html'" data-ng-controller="navegaController as navega"></header>
+
+            <section class="section revolution-slider" data-spacing="none">
+                <div class="bannercontainer">
+                    <div class="banner">
+                        <ul>
+                            <!-- THE FIRST SLIDE -->
+                            <li data-transition="fade" data-slotamount="10" data-masterspeed="300" data-slideindex="back">
+                                <!-- THE MAIN IMAGE IN THE SLIDE -->
+                                <img src="./images/SlidesPpal/estado-de-cuenta.png" alt="Slide1"/>
+
+<!--                                <div class="caption custom sfb" data-x="0" data-y="0" data-speed="300" data-endeasing="easeOutExpo" data-easing="easeOutExpo">
+                                    <div class="caption-data">
+                                        <header><h1><strong>The secret of<br />business is to<br />know something<br />that nobody else<br />knows.</strong></h1></header>
+                                    </div>
+                                </div>-->
+
+                            </li>
+
+                            <!-- THE SECOND SLIDE -->
+                            <li data-transition="papercut" data-slotamount="15" data-masterspeed="300" data-delay="9400">
+                                <img src="./images/SlidesPpal/banner_actualizacion_datos.png" alt="" />
+
+<!--                                <div class="caption custom sfb" data-x="0" data-y="0" data-speed="300" data-endeasing="easeOutExpo" data-easing="easeOutExpo">
+                                    <div class="caption-data">
+                                        <header><h1><strong>No man<br />is a success<br />in business<br />unless he loves<br />his work.</strong></h1></header>
+                                    </div>
+                                </div>-->
+                            </li>
+
+                            <!-- THE THIRD SLIDE -->
+                            <li data-transition="papercut" data-slotamount="15" data-masterspeed="300" data-delay="9400">
+                                <img src="./images/SlidesPpal/banner_encuestas.png" alt=""/>
+
+<!--                                <div class="caption custom sfb" data-x="0" data-y="0" data-speed="300" data-endeasing="easeOutExpo" data-easing="easeOutExpo">
+                                    <div class="caption-data">
+                                        <header><h1><strong>It is the artist's<br />business<br />to create sunshine<br />when the sun<br />fails.</strong></h1></header>
+                                    </div>
+                                </div>-->
+                            </li>
+                        </ul>
+
+                        <div class="tp-bannertimer tp-bottom"></div>
+                    </div>
+                </div>
+            </section>
+
+<!--            <section class="section cta-header" data-spacing="none">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="span8">
+
+                            <header><h5><strong>EPSUM FACTORIAL</strong></h5></header>
+                            <p>Lorem ipsum dolor sit amet?</p>
+
+                        </div>
+                        <div class="span4">
+                            <a href="../contact.html" class="button cta-primary large fluid"><i class="icon-plus"></i>Hire Us Now!</a>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <main >
+                <section class="section">
+                    <div class="container">
+                        <div class="row">
+                            <div class="span4 item-icon">
+                                <i class="icon-pen"></i>
+                                <article>
+                                    <header><h3><strong>Clean Design</strong></h3></header>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt 
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="span4 item-icon">
+                                <i class="icon-iphone"></i>
+                                <article>
+                                    <header><h3><strong>Responsive</strong></h3></header>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt 
+                                    </p>
+                                </article>
+                            </div>
+                            <div class="span4 item-icon">
+                                <i class="icon-eye"></i>
+                                <article>
+                                    <header><h3><strong>Retina Ready</strong></h3></header>
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt 
+                                    </p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="section featured slider">
+                    <div class="container">
+                        <div class="row-fluid">
+                            <div class="span3 controll-pane">
+                                <div class="pane">
+
+                                    <header><h3><strong>Recent Works</strong></h3></header>
+
+                                    <p>
+                                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit diam nonummy nibh euismod.
+                                    </p>
+
+                                    <p>
+                                        Tincidunt ut laoreet dolore magna aliquam.
+                                    </p>
+                                    <ul>
+                                        <li><a href="#" class="prev"><i class="icon-select-left"></i></a></li>
+                                        <li><a href="#" class="next"><i class="icon-select-right"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="span9 slides-pane">
+                                <div class="slideshow recent-works" data-cycle-fx="carousel" data-cycle-timeout="0" data-cycle-carousel-visible="5" data-cycle-next=".next" data-cycle-prev=".prev" data-cycle-slides=".item">
+                                    <article class="item">
+                                        <figure>
+                                            <div><img src="../images/s1.jpg" alt="" /></div>
+                                            <figcaption>
+                                                <div class="inner">
+                                                    <a href="../images/placeholder.jpg" class="link prettyphoto"><i class="icon-zoom-in"></i></a>
+                                                    <a href="../portfolio-single.html" class="link"><i class="icon-external"></i></a>
+                                                </div>
+                                            </figcaption>
+                                        </figure>
+                                        <header>
+                                            <h4><a href="../portfolio-single.html"><strong>Lorem ipsum dolor</strong></a></h4>
+                                        </header>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                        </p>
+                                    </article>
+                                    <article class="item">
+                                        <figure>
+                                            <div><img src="../images/s2.jpg" alt="" /></div>
+                                            <figcaption>
+                                                <div class="inner">
+                                                    <a href="../images/placeholder.jpg" class="link prettyphoto"><i class="icon-zoom-in"></i></a>
+                                                    <a href="../portfolio-single.html" class="link"><i class="icon-external"></i></a>
+                                                </div>
+                                            </figcaption>
+                                        </figure>
+                                        <header>
+                                            <h4><a href="../portfolio-single.html"><strong>Lorem ipsum dolor</strong></a></h4>
+                                        </header>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                        </p>
+                                    </article>
+                                    <article class="item">
+                                        <figure>
+                                            <div><img src="../images/s3.jpg" alt="" /></div>
+                                            <figcaption>
+                                                <div class="inner">
+                                                    <a href="../images/placeholder.jpg" class="link prettyphoto"><i class="icon-zoom-in"></i></a>
+                                                    <a href="../portfolio-single.html" class="link"><i class="icon-external"></i></a>
+                                                </div>
+                                            </figcaption>
+                                        </figure>
+                                        <header>
+                                            <h4><a href="../portfolio-single.html"><strong>Lorem ipsum dolor</strong></a></h4>
+                                        </header>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                        </p>
+                                    </article>
+                                    <article class="item">
+                                        <figure>
+                                            <div><img src="../images/s1.jpg" alt="" /></div>
+                                            <figcaption>
+                                                <div class="inner">
+                                                    <a href="../images/placeholder.jpg" class="link prettyphoto"><i class="icon-zoom-in"></i></a>
+                                                    <a href="../portfolio-single.html" class="link"><i class="icon-external"></i></a>
+                                                </div>
+                                            </figcaption>
+                                        </figure>
+                                        <header>
+                                            <h4><a href="../portfolio-single.html"><strong>Lorem ipsum dolor</strong></a></h4>
+                                        </header>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                        </p>
+                                    </article>
+                                    <article class="item">
+                                        <figure>
+                                            <div><img src="../images/s2.jpg" alt="" /></div>
+                                            <figcaption>
+                                                <div class="inner">
+                                                    <a href="../images/placeholder.jpg" class="link prettyphoto"><i class="icon-zoom-in"></i></a>
+                                                    <a href="../portfolio-single.html" class="link"><i class="icon-external"></i></a>
+                                                </div>
+                                            </figcaption>
+                                        </figure>
+                                        <header>
+                                            <h4><a href="../portfolio-single.html"><strong>Lorem ipsum dolor</strong></a></h4>
+                                        </header>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                        </p>
+                                    </article>
+                                    <article class="item">
+                                        <figure>
+                                            <div><img src="../images/s3.jpg" alt="" /></div>
+                                            <figcaption>
+                                                <div class="inner">
+                                                    <a href="../images/placeholder.jpg" class="link prettyphoto"><i class="icon-zoom-in"></i></a>
+                                                    <a href="../portfolio-single.html" class="link"><i class="icon-external"></i></a>
+                                                </div>
+                                            </figcaption>
+                                        </figure>
+                                        <header>
+                                            <h4><a href="../portfolio-single.html"><strong>Lorem ipsum dolor</strong></a></h4>
+                                        </header>
+                                        <p>
+                                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
+                                        </p>
+                                    </article>
+                                </div>      
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <section class="section">
+                <div class="container">
+                    <div class="row clients">
+                        <div class="span2 item">
+                            <figure><img src="../images/l1.png" alt="" /></figure>
+                        </div>
+                        <div class="span2 item">
+                            <figure><img src="../images/l2.png" alt="" /></figure>
+                        </div>
+                        <div class="span2 item">
+                            <figure><img src="../images/l3.png" alt="" /></figure>
+                        </div>
+                        <div class="span2 item">
+                            <figure><img src="../images/l4.png" alt="" /></figure>
+                        </div>
+                        <div class="span2 item">
+                            <figure><img src="../images/l5.png" alt="" /></figure>
+                        </div>
+                        <div class="span2 item">
+                            <figure><img src="../images/l6.png" alt="" /></figure>
+                        </div>
+                    </div>
+                </div>
+            </section>-->
+
+            <section id="prefooter" class="section" ng-include="'PreFooter.html'"></section>
+            <footer id="footer" class="section" data-spacing="none" ng-include="'Footer.html'"></footer>
+        </div>
+        <!--<script src="../js/layout.js"></script>-->
+        <script src="./libs/jquery.cycle2.min.js"></script>
+        <script src="./libs/jquery.cycle2.carousel.min.js"></script>
+        <script src="./js/bannerActivate.js"></script>
+    </body>
+</html>

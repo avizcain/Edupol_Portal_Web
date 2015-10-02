@@ -1,0 +1,145 @@
+/*-----------------------------------------------------------------------------
+
+REVOLUTION RESPONSIVE BASIC STYLES OF HTML DOCUMENT
+
+Screen Stylesheet
+
+version:   	1.0
+date:      	26/06/12
+author:		themepunch
+email:     	support@themepunch.com
+website:   	http://www.themepunch.com
+-----------------------------------------------------------------------------*/
+
+
+
+  /*********************************************************************************************
+		-	SET THE SCREEN SIZES FOR THE BANNER IF YOU WISH TO MAKE THE BANNER RESOPONSIVE 	-
+  **********************************************************************************************/
+
+  /*	-	THE BANNER CONTAINER (Padding, Shadow, Border etc. )	-	*/
+
+  .bannercontainer {
+		width:1200px;
+		position:relative;
+		margin-left:auto;
+		margin-right:auto;
+
+
+	}
+
+  .banner{
+		width:1200px;
+		height:427px;
+		position:relative;
+		overflow:hidden;
+   }
+
+
+  .bannercontainer2 {
+		padding:0px;
+		background-color:#3e5da2;
+		width:400px;
+		position:relative;
+		position:relative;
+		margin-left:auto;
+		margin-right:auto;
+
+	}
+
+  .banner2{
+		width:400px;
+		height:300px;
+		position:relative;
+		overflow:hidden;
+   }
+
+  .banner header {
+    color: #ffffff;
+    text-transform: uppercase;
+    text-align: right;
+    letter-spacing: -2px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 800;
+  }
+  
+  .banner header h1 {
+    padding-bottom: 0;
+  }
+
+
+  .caption.custom {
+    display: block;
+    width: 100%;
+  }
+
+  .caption.custom .caption-data {
+    padding-right: 80px;
+    padding-top: 100px;
+  }
+
+
+  @media (max-width: 1024px) {
+    .bannercontainer {
+      width: 100%;
+    }
+    .banner {
+      width: 100%;
+    }
+    .tp-leftarrow {
+      left: 0 !important;
+    }
+    .tp-rightarrow {
+      right: 0 !important;
+    }
+  }
+
+  @media (max-width: 980px) {
+
+    .banner header h1 {
+      font-size: 46px;
+      line-height: 46px;
+
+    }
+    .caption.custom .caption-data {
+      padding-right: 40px;
+      padding-top: 50px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .banner header h1 {
+      font-size: 36px;
+      line-height: 36px;
+
+    }
+    .caption.custom .caption-data {
+      padding-right: 40px;
+      padding-top: 40px;
+    }
+
+  }
+
+  @media (max-width: 500px) {
+    .banner header h1 {
+      font-size: 26px;
+      line-height: 26px;
+
+    }
+    .caption.custom .caption-data {
+      padding-right: 40px;
+      padding-top: 40px;
+    }
+  }
+
+  @media (max-width: 340px) {
+    .banner header h1 {
+      font-size: 18px;
+      line-height: 18px;
+
+    }
+    .caption.custom .caption-data {
+      padding-right: 40px;
+      padding-top: 25px;
+    }
+  }

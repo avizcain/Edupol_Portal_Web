@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="es" data-ng-app="appEdupol">
+    <head>
+        <title>..::Portal Cygnus::..</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="" />
+
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="../css/mastersheet.css" />
+        <link rel="stylesheet" type="text/css" href="../css/themes/theme1.css" />
+        <link rel="stylesheet" type="text/css" href="../css/themes/login.css" />
+        <link rel="stylesheet" type="text/css" href="../css/webfonts/unicons.css" />
+        <link rel="stylesheet" type="text/css" href="../css/revolution-slider.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../libs/rs-plugin/css/settings.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../libs/prettyphoto/css/prettyphoto.css" />
+
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+        <script src="../js/ui-bootstrap-tpls-0.13.0.js"></script> 
+        <script src="../libs/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../libs/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+        <script src="../libs/prettyphoto/jquery.prettyphoto.js"></script>
+        <script src="../libs/jquery.easing.min.js"></script>
+        <script src="../libs/jquery.scrollto-1.4.3.1-min.js"></script>
+        <script src="../libs/custom.js"></script>
+        <script src="../libs/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <script src="../js/controlNav.js"></script>
+        <script src="../js/layout.js"></script>
+        <script src="../js/Registro.js"></script>
+        <script src="../js/ValidacionRegistro.js"></script>
+        <script src="../js/FuncionesRegistro.js"></script>
+        <script src="../js/VAlidarTextoNumeros.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="../css/jquery-ui-1.7.2.custom.css" /> <!-- css utilizado para calendario -->
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+
+
+    </head>
+    <body>
+        <div class="wrapper" >
+            <header id="menu" data-ng-controller="navegaController as navega" ng-include="'MenuIn.html'"></header>
+
+            <section class="section main-header">
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">
+                            <header>
+                                <h1>Registro</h1>
+                            </header>
+
+                            <ul class="breadcrumb">
+                                <li>Estas aquí:</li>
+                                <li><a href="../Estudiantes/Registro.html">Registro</a></li>
+                                <li>Columns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="includeLayout" class="section">
+                <div class="container">
+                    <div class="panel-group" id="accordion"> 
+
+                        <div id="divFiltroEstudiantes" class="panel panel-Registro">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a  id="linkFiltroEstudiantes" data-toggle="collapse" data-parent="#accordion" href="#FiltroEstudiantes">ESTUDIANTES INSCRITOS</a>
+                                </h4>
+                            </div>
+                            <div id="FiltroEstudiantes" class="panel-collapse collapse in" data-ng-controller="RegistroController as registro"  data-ng-init="getDataFromServer()"  >
+                                <form name="formularioFiltro" id="formularioFiltro">
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div>
+                                                <div>
+                                                    <label class="col-sm-2">Filtro:</label>
+                                                    <div id="divTipFiltro">
+                                                        <select id="tipFiltro" ng-model="registro.estudiante.filtro.tipFiltro" convert-to-number required>
+                                                            <option value="">Seleccione un Filtro</option>
+                                                            <option value="1">Cedula</option>
+                                                            <option value="2">todos</option>
+                                                        </select>
+                                                    </div>
+                                                    <br/>
+                                                    <br/>
+                                                    <br/>
+                                                    <label id="labelFiltroCedula" class="col-sm-2">Número de cédula:</label>
+                                                    <div id="divFiltroCedula" class="col-sm-3">  
+                                                        <input id="filtroCedula" type="text"  name="filtroCedula" ng-model="registro.estudiante.filtro.cedula" ng-disabled="edit" placeholder="Filtro de Búsqueda " convert-to-number title="Ingrese un número de cédula" required>
+                                                    </div>   
+                                                    <div class="col-sm-3">
+                                                        <button type="submit" id="enviar" class="btn btn-success " ng-click="registro.filtro()" >
+                                                            Consultar
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <table class="table table-striped">
+                                                    <thead class="table-bordered">
+                                                        <tr>
+                                                            <th>Cédula</th>
+                                                            <th>Apellidos<br/>Estudiante</th>
+                                                            <th>Nombres<br/>Estudiante</th>
+                                                            <th>Universidad</th>
+                                                            <th>Fecha Incripción</th>
+                                                            <th>Accición</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody> 
+                                                        <tr  ng-repeat="person in registro.person">
+                                                            <td ng-repeat="(key, val) in person">{{val}}</td>
+                                                            <td>
+                                                                <button type="button" ng-click="registro.guardarFiltro(person)" class="btn btn-primary btn-xs">
+                                                                    <i class="glyphicon glyphicon-pencil">
+                                                                    </i>
+                                                                </button>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <a class="btn btn-primary btn-xs"></a>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div  id="divDatosComplementariosEstudian" class="panel panel-Registro" ng-controller="DatosComplementariosController as complementarios">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a  id="linkEstudiante" data-toggle="collapse" data-parent="#accordion" href="#datosComplementarios">DATOS COMPLEMENTARIOS DEL ESTUDIANTE</a>
+                                </h4>
+                            </div>
+                            <div id="datosComplementarios" class="panel-collapse collapse ">
+                                <form name="formulario1" id="formulario1" >
+
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Periodo Académico:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="pAcademico" ng-model="complementarios.person.periodoAca" ng-options="periodoAca as periodoAca.descripcion for periodoAca in complementarios.person.listPeriodoAcademico track by periodoAca.idCodigo" required>
+                                                            <option value="">Seleccione el periodo académico</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">País Escuela Secundaria:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="paisEscuSecundaria" ng-model="complementarios.person.paisEscuela" ng-options="paisEscuela as paisEscuela.sNombre for paisEscuela in complementarios.person.lisCiudadModels track by paisEscuela.sCodigo" convert-to-number ng-change="complementarios.listasPais(1, 1)" required>
+                                                            <option value="">Seleccione un País</option>                                               
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad Escuela Secundaria:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="CiudadEscuSecu" data-ng-model="complementarios.person.ciudad" data-ng-options="ciudad as ciudad.sNombre for ciudad in complementarios.ciudad.lisCiudadModels track by ciudad.sCodigo" convert-to-number required>
+                                                            <option value="">Seleccione una Ciudad</option>
+                                           
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Categoría del Sisben:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="sCategoriaSisben" name="sCategoriaSisben" ng-model="complementarios.person.idCategoriaSisben" ng-disabled="edit"  onkeypress="return isNumberKeySinCeroCuatroDigitos (event)" maxlength="1" placeholder="Categoría Sisben" required >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Entidad Promotora de Salud</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="EntidadPromotoraS" ng-model="complementarios.person.eps" data-ng-options="eps as eps.NOMBRE_EPS for eps in complementarios.person.listTiposEpsModel track by eps.ID_EPS" required >
+                                                            <option value="">Seleccione una EPS</option>
+                                                           
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nombre Escuela Secundaria:</label>
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-6">
+                                                            <input type="text" id="sNombreEscuela" name="sNombreEscuela" ng-model="complementarios.person.nomEscuelaSecun" ng-disabled="edit" placeholder="Nombre escuela" onkeypress="return soloLetras(event)"  maxlength="35"  required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Departamento Escuela Secundaria:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="DepEscusecu"  ng-model="complementarios.person.depEscuela" ng-options="depEscuela as depEscuela.sNombre for depEscuela in complementarios.depEscuela.lisCiudadModels track by depEscuela.sCodigo" convert-to-number ng-change="complementarios.listasPais(2, 1)" required>
+                                                            <option value="">Seleccione una Ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                </div>                                               
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Fecha de Graduación Secundaria:</label>
+                                                    <div class="col-sm-6">
+                                                        <input id="fechaGraduacion" class="calendario" type="text" name="fechaGraduacion" ng-model="complementarios.person.fechaGradoSecunda" onkeypress="return inavilitarCampo (event)" placeholder="dd/mm/yyyy" maxlength="10" required>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Fondo Pensiones y Cesantías</label>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-6">
+                                                            <input type="text" id="sFondoPensionesCesantias" name="sFondoPensionesCesantias" ng-model="complementarios.person.pensCesantias" placeholder="Fondo de Pensiones y Cesantías" onkeypress="return soloLetras(event)"  maxlength="25" required >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> 
+
+                                        </fieldset>
+                                    </div>
+                                    <button   class="btn btn-success" ng-click="complementarios.secuenciaModulos()">Siguiente</button> 
+                                </form>
+                            </div>
+                        </div>
+                        <div id="divdatosSocioEconomicos" class="panel panel-Registro" ng-controller="DatosSocioeconomicosController as socioeconomico">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a id="linkEconomico" data-toggle="collapse" data-parent="#accordion" href="#datosSocioEconomicos" >DATOS SOCIOECONOMICOS</a>
+                                </h4>
+                            </div>
+                            <div id="datosSocioEconomicos" class="panel-collapse collapse" >
+                                <form> 
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Grupo o Comunidad:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="comunidad" ng-model="socioeconomico.economico.comunidad" ng-options="comunidad as comunidad.sNombreComunidad for comunidad in socioeconomico.economico.listComunidadModels track by comunidad.iCodComunidad" >
+                                                            <option value="">Seleccione una comunidad</option>
+                                                           
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Modo de Costeo de Estudios:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="costeoEstudios" name="costeoEstudios" ng-model="socioeconomico.person.PreRegistro.acudiente.fechExp" ng-disabled="edit" onkeypress="return soloLetras(event)"  maxlength="25" placeholder="Modo de Costeo" required >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Requiere ayuda financiera:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="SiayudaFinaciera" name="ayudaFinaciera" ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="NoAyudaFinanciera" name="ayudaFinaciera"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo de Solicitud del Aspirante:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="tipoSolicitud" ng-model="socioeconomico.economico.solicAspirante" ng-options="solicAspirante as solicAspirante.sNombreSolicitud for solicAspirante in socioeconomico.economico.lisTipoSolicitudModels track by solicAspirante.iId_tipoSolicitud" required >
+                                                            <option value="">Seleccione un tipo de solicitud</option>
+                                                          
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Padece alguna enfermedad crónica  o permanente para la que necesite atención especializada:</label>
+                                                    <br/>
+                                                    <br/>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="SiEnfermedadC" name="EnfermedadC"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="NoEnfermedadC" name="EnfermedadC"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>  
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Forma de  pago:</label>
+                                                    <select id="formaPago"  ng-model="socioeconomico.economico.formaPago" ng-options="formapago as formapago.descripcion for formapago in socioeconomico.economico.listFormaPagoModel track by formapago.codigo" convert-to-number required>
+                                                        <option value="">Seleccione una forma de pago</option>
+                                                    </select>
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6">
+
+                                                <div id="divCredito" class="form-group">
+                                                    <label class="col-sm-5">Pago a Crédito</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="pagoCredito"  required>
+                                                            <option value="">Seleccione una opción</option>
+                                                            <option value="icetex">Icetex</option>
+                                                            <option value="edupol">Edupol</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Cargue de fotografía </label>
+                                                    <div class="col-sm-6">
+                                                        <input type="file" id="cargueFoto" name="cargueFoto" ng-model="socioeconomico.person.PreRegistro.acudiente.cargueFoto" placeholder="Examinar" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tiene alguna limitación física:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="SiLimitacionFisica" name="LimitacionFisica"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="NoLimitacionFisica" name="LimitacionFisica"  ng-checked="true" ng-disabled="edit" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nombre Asesor Comercial:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="nombreAsesor" name="nombreAsesor" ng-model="socioeconomico.person.PreRegistro.acudiente.priNombre" ng-disabled="edit" placeholder="Asesor Comercial" onkeypress="return soloLetras(event)" maxlength="25" required>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">De los siguientes gastos: ¿cuáles son costeados por recursos propios y cuales por la familia?:</label>
+                                                    <label class="radio-inline col-sm-6">Servicios Públicos</label>
+                                                    <div class="col-sm-6">
+
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="Pservicios" name="servicios"  ng-disabled="edit" value="P">PROPIO</label>
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="Foservicios" name="servicios"  ng-disabled="edit" ng-checked="true" value="F">FAMILIA</label>
+
+                                                    </div>
+                                                    <br>
+                                                    <br>
+                                                    <br>
+                                                    <br>
+                                                    <label class="radio-inline col-sm-6">Arrendamiento:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="Parrendamiento" name="arrendamiento"  ng-disabled="edit" value="P">PROPIO</label>
+                                                        <label class="radio-inline labelRadio col-sm-6"><input type="radio" id="Farrendamiento" name="arrendamiento"  ng-disabled="edit" ng-checked="true" value="F">FAMILIA</label>
+
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </fieldset>
+                                    </div>
+                                    <button  class="btn btn-success"  ng-click="socioeconomico.secuenciaModulosEconomico()">Siguiente</button>
+                                </form>    
+                            </div>
+                        </div>
+                        <div id="divDatosIcfes" class="panel panel-Registro" ng-controller="DatosIcfesController as icfes" ng-init="icfes.getDatosIcfes()"> 
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#divIcfes">DATOS ICFES</a>
+                                </h4>
+                            </div>
+                            <div id="divIcfes" class="panel-collapse collapse">
+                                <form>
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Número de Registro ICFES:</label>
+                                                    <div class="col-sm-6">
+                                                        <div class="col-sm-6">
+                                                            <input id="numRegIcfes" ng-model="icfes.estudiante.idRegistro" type="text" name="numRegIcfes"  ng-disabled="edit" placeholder="Número de Registro " onkeypress="return isNumberKey (event)"  maxlength="25" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Fecha Presentación ICFES:</label>
+                                                    <div class="col-sm-6">
+                                                        <input id="fechaIcfes" class="calendario" ng-model="icfes.estudiante.fechaPresentacion" type="text"  name="fechaIcfes"  ng-disabled="edit" placeholder="dd/mm/yyyy" onkeypress="return inavilitarCampo (event)"  maxlength="10" required>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </fieldset>
+                                    </div>
+                                    <fieldset>
+                                        <legend>Areas de Conocimineto</legend>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-5">Lenguaje:</label>
+                                                <div class="col-sm-6">
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="materias"  ng-model="icfes.estudiante.lenguaje" id="icLenguaje" name="icLenguaje"  ng-disabled="edit" onkeypress="return numerosFloats (event)" maxlength="5" placeholder="Puntaje" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-5">Ciencias Solciales:</label>
+                                                <div class="col-sm-6">
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="materias"  ng-model="icfes.estudiante.cienciasSociales" id="icCienciasSoc" name="icCienciasSoc"  ng-disabled="edit" onkeypress="return numerosFloats (event)" maxlength="5" placeholder="Puntaje" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-5">Biología:</label>
+                                                <div class="col-sm-6">
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="materias"  ng-model="icfes.estudiante.biologia" id="icBiologia" name="icBiologia" ng-disabled="edit" onkeypress="return numerosFloats (event)" maxlength="5" placeholder="Puntaje" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-5">Física:</label>
+                                                <div class="col-sm-6">
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="materias"  ng-model="icfes.estudiante.fisica" id="icFisica" name="icFisica"  ng-disabled="edit" onkeypress="return numerosFloats (event)" maxlength="5" placeholder="Puntaje" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label class="col-sm-5">Matemáticas:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="materias"  ng-model="icfes.estudiante.matematicas" id="icMatematicas" name="icMatematicas"  ng-disabled="edit" onkeypress="return numerosFloats (event)" maxlength="5" placeholder="Puntaje" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-5">Filosofía:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="materias" ng-model="icfes.estudiante.filosofia" id="icFilosofia" name="icFilosofia"  ng-disabled="edit" onkeypress="return numerosFloats (event)" maxlength="5" placeholder="Puntaje" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-5">Química:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="materias"  ng-model="icfes.estudiante.quimica" id="icQuimica" name="icQuimica"  ng-disabled="edit" onkeypress="return numerosFloats (event)" maxlength="5" placeholder="Puntaje" >
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="col-sm-5">Promedio Areas de Conocimineto:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text"   id="icPromedio" name="icPromedio"  ng-disabled="edit" onkeypress="return inavilitarCampo (event)" maxlength="5" placeholder="Puntaje"  >
+                                                </div>
+                                            </div>
+                                        </div>  
+                                    </fieldset>
+                                    <button class="btn btn-success"  ng-click="icfes.secuenciaModulosIcfes()">Siguiente</button>
+                                </form>    
+                            </div>
+                        </div>
+                        <div id="divDatosUniversidad" class="panel panel-Registro" ng-controller="DatosUniversidadesController as universidades">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#universidad">DATOS UNIVERSIDADES</a>
+                                </h4>
+                            </div>
+                            <div id="universidad" class="panel-collapse collapse" >
+                                <form>
+                                    <div class="panel-body">
+
+                                        <fieldset>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad donde ha vivido la mayor parte de la vida:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="ciudadMayorVivir"  datang-model="universidades.informacion.ciudadvivir" ng-options="ciudadvivir as ciudadvivir.sNombre for ciudadvivir in universidades.informacion.listMostrarCiudadesModel track by ciudadvivir.sCodigo" convert-to-number required>
+                                                            <option value="">Seleccione Ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Recibio orientación profesional?:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiorientacionProfe" name="orientacionProfe"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoOrientacionProfe" name="orientacionProfe"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Está admitido?:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiAdmitido" name="Admitido"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoAdmitido" name="Admitido"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Explique brevemente la razón por la cual quizo presentarse a iniciar estudios superiores:</label>
+                                                    <div class="col-sm-6">
+                                                        <textarea  id="texExplicacion" name="texExplicacion" maxlength="100" onkeypress="return soloLetras(event)" > </textarea>
+                                                    </div>
+                                                </div>
+
+                                                <br>
+                                                <br>   
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Porque medio se entero de la universidad?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="conUniversidad" name="conUniversidad" onkeypress="return soloLetras(event)" maxlength="25" >
+                                                    </div>
+                                                </div>
+                                                <br/>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ha recibido atención psiquiatrica:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiatencPsiquia" name="atencPsiquia"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoatencPsiquia" name="atencPsiquia"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div id="divCualAtenPsiqui" class="form-group">
+                                                    <label class="col-sm-5">¿Cual?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="cualPsiquiatrica" name="conUniversidad" placeholder="Cual" onkeypress="return soloLetras(event)"  maxlength="25">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Le han formulado medicamentos psiquiatricos?:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SimedicaPsiqui" name="medicaPsiqui"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NomedicaPsiqui" name="medicaPsiqui"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <br/>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Recibió apoyo financiero</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiapoyoFinan" name="apoyoFinan"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoapoyoFinan" name="apoyoFinan"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Entidad que ofrece el apoyo:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="entidadApoyo" >
+                                                            <option value="">Seleccione una entidad</option>
+                                                            <option value="banco">Banco</option>
+                                                            <option value="cooperativa">Cooperativa</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nivel de satifaccion de otro tipo de ayuda:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="satisfaccionAyuda" >
+                                                            <option value="muy bueno">Muy Bueno</option>
+                                                            <option value="bueno">Bueno</option>
+                                                            <option value="regular">Regular</option>
+                                                            <option value="malo">Malo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Tiene Acceso a Internet?:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiaccesoIntenet" name="accesoIntenet"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoaccesoIntenet" name="accesoIntenet"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Tiene Computador Portatil?:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SitienePortatil" name="tienePortatil"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NotienePortatil" name="tienePortatil"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Número de aportantes del grupo familiar:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="numeroAportantesFam" name="numeroAportantesFam"  ng-disabled="edit" onkeypress="return isNumberKey (event)" maxlength="1">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Numero de hermanos:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="numHermanos" name="numHermanos" onkeypress="return isNumberKey (event)" maxlength="2" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Personas a cargo:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="personasAcargo" name="personasAcargo" onkeypress="return isNumberKey(event)" maxlength="2" >
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Mientras realiza los estuidos convivirá con?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="estudiosConvivir" name="estudiosConvivir" onkeypress="return soloLetras(event)" maxlength="25">
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Inscripción aprobada?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="InscripcionAprobada" name="InscripcionAprobada" onkeypress="return soloLetras(event)" maxlength="25" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">País de residencia de los padres:</label>
+                                                    <select id="paisPadres" ng-model="universidades.informacion.paispadre" ng-options="paispadre as paispadre.sNombre for paisPadre in universidades.informacion.lisCiudadModels track by paispadre.sCodigo" convert-to-number ng-change="universidades.listasPais(1, 1)">
+                                                        <option value="">Seleccione un Pais</option>
+                                                    </select>
+                                                </div>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad de residencia de los padres:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="ciudadPadres" data-ng-model="universidades.informacion.ciudadpadres" data-ng-options="ciudadpadres as ciudadpadres.sNombre for ciudadpadres in universidades.ciudadpadres.lisCiudadModels track by ciudadpadres.sCodigo">
+                                                            <option value="">Seleccione Ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Dirección de residencia de los padres:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="direccionPadres" name="direccionPadres" maxlength="20" >
+                                                    </div>
+                                                </div>
+                                                <br>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Barrio de residencia de los padres:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="barrioPadres" name="barrioPadres" onkeypress="return soloLetras(event)" maxlength="20">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Teléfono de residencia de los padres:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="telefonoPadres" name="telefonoPadres"  onkeypress="return isNumberKey (event)" maxlength="15" >
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+
+                                            <div class="col-sm-6">
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿A que otra Universidad se ha presentado?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="otrasUniversidades" name="otrasUniversidades" ng-model="actualiza.person.PreRegistro.acudiente.fechExp" ng-disabled="edit"  required onkeypress="return soloLetras(event)" maxlength="25">
+                                                    </div>
+                                                </div>
+                                                <br/>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Valor pagado por la matricula:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="ValorMatricula" name="ValorMatricula" onkeypress="return isNumberKey (event)" maxlength="15">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Puntaje de Admisión:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="puntajeAdmi" name="puntajeAdmi" ng-disabled="edit" onkeypress="return numerosFloats (event)" maxlength="10">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Seleccione un aspecto importante al escoger la carrera:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="aspectosImportantes" >
+                                                            <option value="">Seleccione un aspecto</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br/>  
+                                                <br/>  
+                                                <br/>  
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Por cuál medio se informó del programa al que aspira?:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="InformoPrograma" name="InformoPrograma" onkeypress="return soloLetras(event)" maxlength="25" >
+                                                    </div>
+                                                </div>
+
+                                                <br/>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Motivo de la consulta:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="motivoConsulta" name="motivoConsulta"  onkeypress="return soloLetras(event)"  maxlength="25">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Requiere ayuda académica:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiAyudaAcademica" name="AyudaAcademica"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoAyudaAcademica" name="AyudaAcademica"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Recibió otro tipo de apoyo:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiotroTipoApoyo" name="otroTipoApoyo"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NootroTipoApoyo" name="otroTipoApoyo"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nivel de satisfacción de la ayuda académica:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="satisfaccionAyudaAcademica" >
+                                                            <option value="muy bueno">Muy Bueno</option>
+                                                            <option value="bueno">Bueno</option>
+                                                            <option value="regular">Regular</option>
+                                                            <option value="malo">Malo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Tiene Computador?:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SitieneComputador" name="tieneComputador"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NotieneComputador" name="tieneComputador"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Tiene Email?:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SitieneEmail" name="tieneEmail"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NotieneEmail" name="tieneEmail"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Número de personas del grupo familiar:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="numeroPersoGrupoFamil" name="numeroPersoGrupoFamil" onkeypress="return isNumberKeySinCeroCuatroDigitos (event)" maxlength="2">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Tiene deuda la vivienda?:</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SitieneDeudaVivienda" name="tieneDeudaVivienda"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NotieneDeudaVivienda" name="tieneDeudaVivienda"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Lugar que ocupa entre sus Hermanos:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="lugarEntreHermanos" name="lugarEntreHermanos" onkeypress="return isNumberKeySinCeroCuatroDigitos (event)" maxlength="2">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Número de hermanos con titulo de educación superior:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="hermanosTitulados" name="hermanosTitulados" onkeypress="return isNumberKey (event)" maxlength="1">
+                                                    </div>
+                                                </div>
+
+                                                <br/>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Fecha de entrevista:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" class="calendario" id="fechaEntrevista" name="fechaEntrevista" onkeypress="return inavilitarCampo (event)" placeholder="dd/mm/yyyy" maxlength="10">
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Familiar egresado de nuestra universidad:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="familiarEgresadoUniver" name="familiarEgresadoUniver" onkeypress="return soloLetras(event)" maxlength="25">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Departamento de residencia de los padres:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="dpto" ng-model="universidades.informacion.depadres" ng-options="depadres as depadres.sNombre for depadres in universidades.depadres.lisCiudadModels track by depadres.sCodigo" convert-to-number ng-change="universidades.listasPais(2,1)" >
+                                                            <option value="">Seleccione un departamento</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Razones de su interés por la universidad y la carrera a la cual aspirá:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="razonesInteresUniv" name="razonesInteresUniv" onkeypress="return soloLetras(event)"  maxlength="25">
+                                                    </div>
+                                                </div>
+
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Breve Autobiografía:</label>
+                                                    <textarea  id="autobiografia" name="autobiografia" onkeypress="return soloLetras(event)"  maxlength="200"> </textarea>
+                                                </div>
+                                            </div> 
+                                        </fieldset>
+                                    </div>
+                                    <button  ng-click="universidades.secuenciaModulosUniversidades()" class="btn btn-success">Siguiente</button>
+                                </form>     
+                            </div>
+                        </div>
+
+                        <div id="divDatosCodeudor" class="panel panel-Registro" ng-controller="DatosCodeudorController as codeudor">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#codeudorDatos">DATOS DEL CODEUDOR</a>
+                                </h4>
+                            </div>
+                            <div id="codeudorDatos" class="panel-collapse collapse"  >
+                                <form>
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <legend>Datos Básicos</legend>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo Identificacion:</label>
+                                                    <div class="col-sm-6">
+
+
+
+
+                                                        <select id="tipoId" ng-model="codeudor.person.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in codeudor.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number placeholder="Tipo Identificacion" >
+                                                            <option value="">Seleccione tipo de identificacion</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nombre Completo:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="nombreCompleto" name="nombreCompleto" ng-model="codeudor.person.nombre" ng-disabled="edit" placeholder="Nombre Completo" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">País de Nacimiento:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <select id="paisNacimiento" ng-model="codeudor.person.paisNac" ng-options="ciudad as ciudad.sNombre for ciudad in codeudor.person.lisCiudadModels track by ciudad.sCodigo" convert-to-number ng-change="codeudor.listasPais(1)">
+                                                            <option value="">Seleccione un país</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad de Nacimiento:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <select id="ciudadNacimiento" ng-model="codeudor.person.ciudadNac" ng-options="ciudad as ciudad.sNombre for ciudad in codeudor.ciudadNacimiento.lisCiudadModels track by ciudad.sCodigo" convert-to-number>
+                                                            <option value="">Seleccione una ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Género:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="generoDeudor" ng-model="codeudor.person.genero" ng-options="genero as genero.sDescripcion for genero in codeudor.person.lisGeneroModels track by genero.iIdGenero" convert-to-number>
+
+                                                            <option value="">Seleccione un género</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Estado:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <select id="estadoCodeudor" ng-model="codeudor.person.estado"  convert-to-number>
+                                                            <option value="">Seleccione una Opcion</option>
+
+
+                                                            <option value="1">Activo</option>
+                                                            <option value="0">Inactivo</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Número de Identificación:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="numerIdentiCodeu" name="numerIdentiCodeu" ng-model="codeudor.person.numIden"  ng-disabled="edit" placeholder="Número Identificación" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Fecha de Nacimiento:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="fechaNaciemiCodeu" ng-model="codeudor.person.fechaNac" name="fechaNaciemiCodeu   "  ng-disabled="edit" placeholder="dd/mm/yyyy" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Departamento de Nacimiento:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="departamentoCodeudor" ng-model="codeudor.person.depNac" ng-options="ciudad as ciudad.sNombre for ciudad in codeudor.DepartamentoNacimiento.lisCiudadModels track by ciudad.sCodigo" convert-to-number ng-change="codeudor.listasPais(2)">
+
+                                                            <option value="">Seleccione un Departamento</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Fecha de expedición Documento:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="fechaExpediciDocumen" ng-model="codeudor.person.fechaExp" name="fechaExpediciDocumen"  placeholder="dd/mm/yyyy">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Estado Civil:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="estadoCivilCodeudor" ng-model="codeudor.person.estadoCivil"  ng-options="estado as estado.sDescripcionEstCivil for estado in codeudor.person.lisEstadoCivilModels track by estado.sCodigoEstadoCivil" convert-to-number>
+
+
+
+
+                                                            <option value="">Seleccione un estado civil</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Parentesco con el Estudiante:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="parentescoCodeuEstudi" name="" ng-model="codeudor.person.parentesco" ng-disabled="edit" placeholder="Ingrese Parentesco" >
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Datos de Ubicación y Contacto</legend>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Teléfono fijo:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <input type="text" id="telefonoCodeu" name="telefonoCodeu" ng-model="codeudor.person.telFijo" ng-disabled="edit" placeholder="Ingrese Telefono"  >                                       
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Correo Electronico:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="correoCodeu" name="correoCodeu" ng-model="codeudor.person.email" ng-disabled="edit" placeholder="Ingrese email" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Departamento de Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="departaResidenciaCodeu" ng-model="codeudor.person.depRes" ng-options="ciudad as ciudad.sNombre for ciudad in codeudor.DepartamentoResidencia.lisCiudadModels track by ciudad.sCodigo" convert-to-number ng-change="codeudor.listasPais(5)">
+                                                            <option value="">Seleccione un Departamento</option>
+
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                
+                                                
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Dirección de Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="direccionCodeudorResiden" name="direccionCodeudorResiden" ng-model="codeudor.person.direccion" placeholder="Ingrese Dirección" >
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Teléfono Móvil:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="numeroCelular" name="numeroCelular" ng-model="codeudor.person.telMovil"  ng-disabled="edit" placeholder="ingrese telefono Movil" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">País de Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="paisResidenCodeud" ng-model="codeudor.person.paisRes" ng-options="ciudad as ciudad.sNombre for ciudad in codeudor.person.lisCiudadModels track by ciudad.sCodigo" convert-to-number ng-change="codeudor.listasPais(4)">
+
+
+
+                                                            <option value="">Seleccione un país</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ciudad de Residencia:</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="ciudadResidenCodeud" ng-model="codeudor.person.ciudadRes" ng-options="ciudad as ciudad.sNombre for ciudad in codeudor.ciudadResidencia.lisCiudadModels track by ciudad.sCodigo" convert-to-number>
+
+
+
+
+                                                            <option value="">Seleccione una Ciudad</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Datos Financieros</legend>
+                                            <div class="col-sm-6">
+                                                <h3>Tipos de Ingreso:</h3>
+                                                <br/>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ingreso por Arrendamiento</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiIngresoArredamien" name="IngresoArredamien"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoIngresoArredamien" name="IngresoArredamien"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div id="divCuantoArriendo" class="form-group">
+                                                    <label class="col-sm-5">¿Cuanto?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="cuantoArriendo" name="cuantoArriendo" ng-model="codeudor.person.arriendo" placeholder="Arriendo">
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">                                               
+                                                    <label class="col-sm-5">Ingreso por Pension</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiIngresoPension" name="IngresoPension"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoIngresoPension" name="IngresoPension"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div id="divCuantoPension" class="form-group">
+                                                    <label class="col-sm-5">¿Cuanto?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="cuantoPension" name="cuantoPension" ng-model="codeudor.person.pension" placeholder="Pension" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">                                               
+                                                    <label class="col-sm-5">Otros Ingresos</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiIngresoOtros" name="IngresoOtros"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoIngresoOtros" name="IngresoOtros"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div id="divCualesOtros" class="form-group">
+                                                    <label class="col-sm-5">Especifique Cuales:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="cualesOtrosIngreso" name="cualesOtrosIngreso" ng-model="codeudor.person.nomOtrosIngresos" placeholder="Indique Nombre Ingresos" >
+                                                    </div>
+                                                    <label class="col-sm-5">¿Cuanto?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="CuantoOtrosIngresos" name="CuantoOtrosIngresos" ng-model="codeudor.person.otrosIngresos" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Gastos Familiares</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiGastosFamiliares" name="GastosFamiliares"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NoGastosFamiliares" name="GastosFamiliares"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div id="divCuantoGastosFamiliares" class="form-group">
+                                                    <label class="col-sm-5">¿Cuanto?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="cuantoGastosFamiliares" name="cuantoGastosFamiliares" ng-model="codeudor.person.gastosFamiliares" placeholder="Gastos familiares" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Otros Gastos</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SiotrosGastos" name="otrosGastos"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NootrosGastos" name="otrosGastos"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div id="divCuantoOtrosGastos" class="form-group">
+                                                    <label class="col-sm-5">¿Cuanto?</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="CuantoOtrosGastos" name="CuantoOtrosGastos" ng-model="codeudor.person.otrosGastos" placeholder="ingrese Gastos" >
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">¿Trabaja Actualmente?</label>
+                                                    <div class="col-sm-6">
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="SitrabajaActualmente" name="trabajaActualmente"  ng-disabled="edit" value="S">Si</label>
+                                                        <label class="radio-inline col-sm-6"><input type="radio" id="NotrabajaActualmente" name="trabajaActualmente"  ng-disabled="edit" ng-checked="true" value="N">No</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Informacion Laboral</label>
+                                                    <div class="col-sm-6">
+                                                        <select id="informacionLaboral" ng-model="codeudor.person.tipTrabajo" ng-options="tipTrabajo as tipTrabajo.sDescripcion for tipTrabajo in codeudor.person.listTipoTrabajoModels track by tipTrabajo.iCodTipoTrabajo" convert-to-number>
+
+
+
+
+                                                            <option value="">Seleccione una opcion</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Persona a Cargo</label>
+                                                    <div class="col-sm-6">
+
+                                                        <input type="text" id="personasAcargoCodeu" name="personasAcargoCodeu" ng-model="codeudor.person.numPersonas" placeholder="Ingrese numeros de personas " >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Datos de la Empresa Donde Labora</legend>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ocupacion:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="ocupacionCodeu" name="ocupacionCodeu" ng-model="codeudor.person.ocupacion" placeholder="Ingrse ocupacion" >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Telefono de la Empresa Donde Labora:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="telefonoEmpresaLabora" name="telefonoEmpresaLabora" ng-model="codeudor.person.telEmpresa" placeholder="Ingrese telefono" >
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Antigüedad:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <input type="text" id="antiguedad" name="antiguedad" ng-model="codeudor.person.antiguedad" placeholder="Ingrese Antigüedad" >
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Sueldo Actual:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="sualdoActual" name="sualdoActual" ng-model="codeudor.person,sueldo" placeholder="Ingrese sueldo" >
+                                                    </div>
+                                                </div> 
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nombre de la Empresa Donde Labora:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="nombreEmpresaLabora" name="nombreEmpresaLabora" ng-model="codeudor.person.nomEmpresa" placeholder="Ingrese nombre de la empresa">
+                                                    </div>
+                                                </div>
+                                                <br/>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Cargo:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="cargoEmpresa" name="cargoEmpresa" ng-model="codeudor.person.cargo" placeholder="Ingrese cargo" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Honorarios y comisiones:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="honoraComisiones" name="honoraComisiones" ng-model="codeudor.person.honorarios" placeholder="Ingrese Honorarios">
+                                                    </div>
+                                                </div> 
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo de contrato:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="tipoContrato" name="tipoContrato" ng-model="codeudor.person.tipContrato" placeholder="Ingrese Tipo Contrato">
+                                                    </div>
+                                                </div> 
+
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Datos Académicos</legend>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Estudios Realizados:</label>
+                                                    <select id="estudioscodeudor" ng-model="codeudor.person.estudiosRealizados"  ng-options="nivelEstudios as nivelEstudios.sDescripcion for nivelEstudios in codeudor.person.lisNivelEstudiosModels track by nivelEstudios.sCodigo" convert-to-number >
+
+
+
+                                                            <option value="">Seleccione Estudios</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Intitucion o Universidad:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="institucionEstudios" name="institucionEstudios"  ng-model="codeudor.person.universidad" placeholder="Ingrese Universidad">
+                                                    </div>
+                                                </div> 
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Titulo Obtenido:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="tituloObtenido" name="tituloObtenido" ng-model="codeudor.person.titulo" placeholder="Ingrese titulo" >
+                                                    </div>
+                                                </div> 
+                                            </div>
+                                        </fieldset>
+
+                                        <fieldset>
+                                            <legend>Referencia Personal</legend>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nombre Completo:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="nombreRefePersonal" name="nombreRefePersonal" ng-model="codeudor.person.nomRef" placeholder="Ingrese Nombre" >
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Telefono Movil:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="telefonoMovilRefPersonal" name="telefonoMovilRefPersonal" ng-model="codeudor.person.movilRef" placeholder="Ingrese Telefono" >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ocupacion:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="ocupacionRefPersonal" name="ocupacionRefPersonal" ng-model="codeudor.person.ocupacionRef" placeholder="Ingrese Ocupacion">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Telefono Fijo:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="telefonoFijoRefPersonal" name="telefonoFijoRefPersonal" ng-model="codeudor.person.telRef" placeholder="Ingrese Telefono" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Correo Electronico:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <input type="text" id="correoReferPersonal" name="correoReferPersonal" ng-model="codeudor.person.emailRef" placeholder="Ingrese email" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nombre de la Empresa Donde Labora:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="nombreEmpreLaboraPersonal" name="nombreEmpreLaboraPersonal"  ng-model="codeudor.person.nomEmpresaRef" placeholder="Ingrese nombre Empresa">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </fieldset>
+                                        <fieldset>
+                                            <legend>Referencia Familiar</legend>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nombre Completo:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="nombreRefeFamiliar" name="nombreRefeFamiliar" ng-model="codeudor.person.nomRefFami" placeholder="Ingrese Nombre" >
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Telefono Movil:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="telefonoMovilRefFamiliar" name="telefonoMovilRefFamiliar" ng-model="codeudor.person.movilRefFami" placeholder="Ingrese Telefono">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Ocupacion:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="ocupacionRefFamiliar" name="ocupacionRefFamiliar" ng-model="codeudor.person.ocupacionRef" placeholder="Ingrese Ocupacion">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Telefono Fijo:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="telefonoFijoRefFamiliar" name="telefonoFijoRefFamiliar" ng-model="codeudor.person.telRefFami" placeholder="Ingrese Telefono">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Correo Electronico:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="correoReferFamiliar" name="correoReferFamiliar" ng-model="codeudor.person.emailRefFami" placeholder="Ingrese email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Nombre de la Empresa Donde Labora:</label>
+                                                    <div class="col-sm-6">
+                                                        <input type="text" id="nombreEmpreLaboraFamiliar" name="nombreEmpreLaboraFamiliar" ng-model="codeudor.person.nomEmpresaRefFami" placeholder="Ingrese nombre Empresa" required >
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </fieldset>
+
+
+                                    </div>
+
+                                    <button   class="btn btn-success" ng-click="codeudor.secuenciaModulosCodeudor()">Siguiente</button>
+                                </form>    
+                            </div>
+                        </div>
+
+
+
+                        <div id="divDatosHomologacion" class="panel panel-Registro" ng-controller="DatosHomologacionesController as homologacion">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#divHomologacion">INFORMACION DE HOMOLOGACIONES</a>
+                                </h4>
+                            </div>
+                            <div id="divHomologacion" class="panel-collapse collapse">
+                                <form>
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Tipo Homologación:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <select ng-model="homologacion.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                            <option value="">Seleccione tipo de Homologación</option>
+
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Homologación Especial:</label>
+                                                    <div class="col-sm-6">
+                                                        <select ng-model="homologacion.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                            <option value="">Seleccione tipo de Homologación</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </fieldset>
+                                    </div>
+                                    <button  ng-click="homologacion.secuenciaModulosHomologaciones()" class="btn btn-success">Siguiente</button>
+                                </form>
+                            </div>
+                        </div>
+
+
+
+                        <div id="divDatosPagos"  class="panel panel-Registro" ng-controller="DatosModalidadPagoController as modalidaPago">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#ModaPago">INFORMACIÓN DE MODALIDAD DE PAGO</a>
+                                </h4>
+                            </div>
+                            <div id="ModaPago" class="panel-collapse collapse">
+                                <form>
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Forma de Pago:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <select ng-model="modalidaPago.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                            <option value="">Seleccione una forma de pago</option>
+
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Créditos Especiales:</label>
+                                                    <div class="col-sm-6">
+
+                                                        <select ng-model="modalidaPago.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                            <option value="">Seleccione un crédito</option>
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </fieldset>
+                                    </div>
+                                    <button  ng-click="modalidaPago.secuenciaModulosPago()" class="btn btn-success">Siguiente</button>  
+                                </form>   
+                            </div>
+                        </div>
+
+
+
+                        <div id="divSimulador" class="panel panel-Registro" ng-controller="DatosSimuladorController as simulador">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#simulador">SIMULADOR DE CREDITO</a>
+                                </h4>
+                            </div>
+                            <div id="simulador" class="panel-collapse collapse" >
+                                <form>
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>UNIVERSIDAD</th>
+                                                        <th>PROGRAMA</th>
+                                                        <th>PERIODO ACADEMICO</th>
+                                                        <th>FECHA INICIO</th>
+                                                        <th>FECHA FIN</th>
+                                                        <th>PLAZO</th>
+                                                        <th>ESTADO ESTUDIANTE</th>
+                                                        <th>PERIODO CURSADO</th>
+                                                        <th>PRECIO PROGRAMA</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tfoot>
+                                                    <tr>
+                                                        <th>UNIVERSIDAD</th>
+                                                        <th>PROGRAMA</th>
+                                                        <th>PERIODO ACADEMICO</th>
+                                                        <th>FECHA INICIO</th>
+                                                        <th>FECHA FIN</th>
+                                                        <th>PLAZO</th>
+                                                        <th>ESTADO ESTUDIANTE</th>
+                                                        <th>PERIODO CURSADO</th>
+                                                        <th>PRECIO PROGRAMA</th>
+                                                    </tr>
+                                                </tfoot>
+
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <select ng-model="actualiza.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                                <option value="">Seleccionar Universidad</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <select ng-model="actualiza.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                                <option value="">Seleccionar Programa</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>Edinburgh</td>
+                                                        <td>2011/04/25</td>
+                                                        <td>2011/04/25</td>
+                                                        <td>1</td>
+                                                        <td>24</td>
+                                                        <td>1</td>
+                                                        <td>$320,800</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </fieldset>
+                                    </div>
+                                    <button  ng-click="simulador.secuenciaModulosSimuladorCredito()" class="btn btn-success">Siguiente</button>     
+                                </form>     
+                            </div>
+                        </div>
+
+
+
+                        <div id="divDocumentosRespaldo" class="panel panel-Registro" ng-controller="DatosDocumentosController as documentos">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#respalCredito">DOCUMENTOS DE RESPALDO DEL CREDITO</a>
+                                </h4>
+                            </div>
+                            <div id="respalCredito" class="panel-collapse collapse" >
+                                <form>
+                                    <div class="panel-body">
+                                        <fieldset>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Descargar Garantías:</label>
+                                                    <div class="col-sm-6">
+                                                        <select ng-model="documentos.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                            <option value="">Seleccione tipo de garantía</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                            </div> 
+                                        </fieldset>
+                                    </div>
+                                    <button  ng-click="documentos.secuenciaModulosRespaldoCredito()" class="btn btn-success">Siguiente</button>    
+                                </form>    
+                            </div>
+                        </div>
+
+
+
+                        <div id="divFinalizacionSolicitud" class="panel panel-Registro" ng-controller="DatosFinalizacionController as final">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent="#accordion"  href="#solicitudCre">FINALIZACION DE SOLICITUD DEL CREDITO</a>
+                                </h4>
+                            </div>
+                            <div id="solicitudCre" class="panel-collapse collapse">
+                                <form class="collapse in">
+                                    <div class="panel-body">
+                                        <fieldset>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Linea de Crédito:</label>
+                                                    <div class="col-sm-6">
+                                                        <select ng-model="final.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                            <option value="">Seleccione una linea de crédito</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="col-sm-5">Estado Crédito:</label>
+                                                    <div class="col-sm-6">
+                                                        <select ng-model="final.person.PreRegistro.acudiente.tipIden" ng-options="TipoIden as TipoIden.sDescripcion for TipoIden in actualiza.person.lisTipoIdentificacionModels track by TipoIden.iId_Identificacion" convert-to-number>
+                                                            <option value="">Seleccione un estado</option>
+
+
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div> 
+                                        </fieldset>
+                                    </div>
+                                    <button  ng-click="final.secuenciaModulosSolicitudCredito()" class="btn btn-success">Siguiente</button>   
+                                </form>     
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="prefooter" class="section" ng-include="'PreFooter.html'"></section>
+            <footer id="footer" class="section" data-spacing="none" ng-include="'Footer.html'"></footer>
+        </div>
+        <!--<script src="../js/layout.js"></script>-->
+    </body>
+</html>

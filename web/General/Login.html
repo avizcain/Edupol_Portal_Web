@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es" data-ng-app="appLogin">
+    <head>
+        <title>..::Portal Cygnus::..</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="" />
+
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="../css/mastersheet.css" />
+        <link rel="stylesheet" type="text/css" href="../css/themes/theme1.css" />
+        <link rel="stylesheet" type="text/css" href="../css/themes/login.css" />
+        <link rel="stylesheet" type="text/css" href="../css/webfonts/unicons.css" />
+        <link rel="stylesheet" type="text/css" href="../css/revolution-slider.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../libs/rs-plugin/css/settings.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../libs/prettyphoto/css/prettyphoto.css" />
+        <!--<link rel="import" href="./Layout/LayoutOut.html" />-->
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
+        <!--<script src="../js/controlNav.js"></script>-->
+        <script src="../js/login.js"></script>
+        <script src="../libs/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../libs/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+        <script src="../libs/prettyphoto/jquery.prettyphoto.js"></script>
+        <script src="../libs/jquery.easing.min.js"></script>
+        <script src="../libs/jquery.scrollto-1.4.3.1-min.js"></script>
+        <script src="../libs/custom.js"></script>
+        <!--<script src="../libs/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>-->
+        <!--<script src="../js/ui-bootstrap-tpls-0.13.0.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-transition.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-collapse.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-dropdown.js"></script>-->
+        <!--<script src="../libs /retina/retina.js"></script>-->
+
+    </head>
+    <body>
+        <div class="wrapper" >
+            <header id="menu" data-ng-include src="'MenuIn.html'"></header>
+
+            <section class="section" data-ng-controller="loginController as login">
+                <div class="row">
+                    <div class="col-md-3 col-md-offset-4">
+                        <div class="paneles panel-default">
+                            <div class="panel-body">
+                                <ul class="nav nav-pills">
+                                    <li class="active"><a href="#">Login</a></li>
+                                    <li><a href="../Estudiantes/PreRegistro.html">Registro</a></li>
+                                </ul>
+                                <h5 class="text-center">INICIAR SESION</h5>
+                                <form class="form form-signup" role="form" accept-charset="UTF-8">
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+                                            <input type="text" class="form-control" data-ng-model="login.credencial.username" placeholder="Username" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                                            <input type="password" class="form-control" data-ng-model="login.credencial.password" placeholder="Password" required/>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-sm btn-primary btn-block" data-ng-click="login.valida()" >
+                                        INGRESAR
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </section>
+            
+            <section id="prefooter" class="section" data-ng-include src="'PreFooter.html'"></section>
+            <footer id="footer" class="section" data-spacing="none" data-ng-include src="'Footer.html'"></footer>
+        </div>
+        <!--<script src="./js/layout.js"></script>-->
+    </body>
+</html>

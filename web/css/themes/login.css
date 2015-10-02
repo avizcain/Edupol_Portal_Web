@@ -1,0 +1,36 @@
+body
+{
+    background-color: #252323;
+    padding-top: 40px;
+}
+
+
+.input-group-addon
+{
+    background-color: rgb(50, 118, 177);
+    border-color: rgb(40, 94, 142);
+    color: rgb(255, 255, 255);
+}
+.form-control:focus
+{
+    background-color: rgb(50, 118, 177);
+    border-color: rgb(40, 94, 142);
+    color: rgb(255, 255, 255);
+}
+.form-signup input[type="text"],.form-signup input[type="password"] { border: 1px solid rgb(50, 118, 177); }
+
+.paneles.panel-default {
+    width: 87%; background-color: activecaption;
+    border-color: rgb(50, 118, 177);
+    border-radius: 13px;
+    border-style: solid;
+    padding: 4%;
+    width: 87%;
+}
+
+.text-center{
+    color: white;
+    font-size: 13px;
+    padding-bottom: 12px;
+    text-align: center;
+}

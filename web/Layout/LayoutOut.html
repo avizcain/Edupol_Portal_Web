@@ -1,0 +1,98 @@
+<!-- HTML5 shim, for very old IE's -->
+<!--[if lt IE 9]>
+  <script src="./libs/html5shiv.js"></script>
+<![endif]-->
+
+<section id="top" class="section" data-spacing="none" >
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="navbar">
+                    <div class="navbar-inner">
+                        <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a href="./index.html" class="brand"><img src="./images/profit.png" alt="" />profit+</a>
+                        <div class="nav-collapse collapse">
+                            <ul class="nav">
+                                <li class="active" data-ng-click="navega.getPage();"><a href="javascript:location.reload()">Home</a></li>
+                                <li class="dropdown" data-ng-repeat="modulo in navega.main.listModuloModel">
+                                    <a href="#" data-ng-class="dropdown - toggle" data-toggle="dropdown">{{modulo.sNombre}}</a>
+                                    <ul class="dropdown-menu" >
+                                        <li class="stack" data-ng-click="navega.changePage(pagina.sRuta)" data-ng-repeat="pagina in modulo.listPaginaModel"><a href="{{pagina.sRuta}}">{{pagina.sNombre}}</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown"><a href="./General/Login.html">Inicio Sesion</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<div id="inPrefooter" class="container">
+    <div class="row">
+        <div class="span3">
+            <header>
+                <h3><strong>About Profit+</strong></h3>
+            </header>
+            <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. 
+            </p>
+        </div>
+        <div class="span3 offset1">
+            <header>
+                <h3><strong>Contact Us</strong></h3>
+            </header>
+            <ul class="contact">
+                <li>
+                    <i class="icon-location"></i>
+                    <span><strong>Address:</strong></span> <span>Świętkorzyska Str 56,<br />Warsaw, Poland</span>
+                </li>
+                <li>
+                    <i class="icon-phone"></i><span><strong>Phone:</strong></span> <span>+48 880 440 110</span>
+                </li>
+                <li>
+                    <i class="icon-mail"></i><span><strong>Email:</strong></span> <span><a href="mailto:mail@example.com">mail@example.com</a></span>
+                </li>
+            </ul>
+        </div>
+        <div class="span4 offset1">
+            <header>
+                <h3><strong>Career</strong></h3>
+            </header>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure, asperiores, voluptatem ad dolores ea commodi voluptates eveniet consectetur nobis deleniti qui illum tenetur
+            </p>
+            <br />
+            <a href="#">Apply Now</a>
+
+        </div>
+    </div>
+</div>
+
+<div class="container" id="inFooter">
+    <div class="row">
+        <div class="span4 pull-right">
+            <ul class="socials">
+                <li><a href="#" class="facebook"></a></li>
+                <li><a href="#" class="behance"></a></li>
+                <li><a href="#" class="twitter"></a></li>
+                <li><a href="#top" class="top"></a></li>
+            </ul>
+        </div>
+        <div class="span8 pull-left">
+            <p>Copyright 2015 Ethos<span>&nbsp;&nbsp;&nbsp;</span>Designed by <a href="http://www.ethosweb.com" target="_blank">ETHOS SOLUCIONES</a></p>
+        </div>
+    </div>
+</div>

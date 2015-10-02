@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es" data-ng-app="appEdupol">
+    <head>
+        <title>..::Portal Cygnus::..</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <meta name="author" content="" />
+
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" />
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" />
+        <link rel="stylesheet" type="text/css" href="../css/mastersheet.css" />
+        <link rel="stylesheet" type="text/css" href="../css/themes/theme1.css" />
+        <link rel="stylesheet" type="text/css" href="../css/themes/login.css" />
+        <link rel="stylesheet" type="text/css" href="../css/webfonts/unicons.css" />
+        <link rel="stylesheet" type="text/css" href="../css/revolution-slider.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../libs/rs-plugin/css/settings.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../libs/prettyphoto/css/prettyphoto.css" />
+        <!--<link rel="import" href="../Layout/LayoutIn.html" />-->
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-animate.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js"></script>
+        <script src="../js/controlNav.js"></script>
+        <script src="../js/actualizaDatos.js"></script>
+        <!--<script src="./js/login.js"></script>-->
+        
+        <script src="../libs/jquery.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../libs/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+        <script src="../libs/prettyphoto/jquery.prettyphoto.js"></script>
+        <script src="../libs/jquery.easing.min.js"></script>
+        <script src="../libs/jquery.scrollto-1.4.3.1-min.js"></script>
+        <script src="../libs/custom.js"></script>
+        <script src="../libs/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+        <!--<script src="../js/ui-bootstrap-tpls-0.13.0.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-transition.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-collapse.js"></script>-->
+        <!--<script src="../libs/bootstrap/js/bootstrap-dropdown.js"></script>-->
+        <!--<script src="../libs/retina/retina.js"></script>-->
+
+
+    </head>
+    <body>
+        <div class="wrapper" >
+            <header id="menu" data-ng-controller="navegaController as navega" ng-include="'../Layout/MenuLayoutIn.html'"></header>
+
+            <section class="section main-header" >
+                <div class="container">
+                    <div class="row">
+                        <div class="span12">
+                            <header>
+                                <h1>Actualización de Datos</h1>
+                            </header>
+
+                            <ul class="breadcrumb">
+                                <li>Estas aquí:</li>
+                                <li><a href="../">Actualización de datos</a></li>
+                                <li>Columns</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section id="includeLayout" class="section">
+                <div id="formInclude" data-ng-controller="actualizaController as actualiza"> 
+                    <form class="form-horizontal" ng-class="" data-ng-init="getDataFromServer()" accept-charset="UTF-8">
+                        <h1>INFORMACION PERSONAL</h1>
+                        <br/>
+                        <h2>USUARIO: {{actualiza.person.personaModel.sNombre + " " + actualiza.person.personaModel.sApellido}}</h2>
+                        <br/>
+                        <div class="col-sm-6">
+                            <div class="form-group ">
+                                <label class="col-sm-5">Identificacion:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="sIden" name="sIden" ng-model="actualiza.person.personaModel.sIden" ng-disabled="edit" placeholder="Identificacion" readonly="true">
+                                </div>
+                            </div> 
+                            <div class="form-group">
+                                <label class="col-sm-5">Fecha de Nacimiento:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="sFecNac" name="sFecNac" ng-model="actualiza.person.personaModel.sFecNac" ng-disabled="edit" placeholder=" dd/mm/yyyy" readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Fecha de Expedición Documento:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="sFecExp" name="sFecExp" ng-model="actualiza.person.personaModel.sFecExp" ng-disabled="edit" placeholder=" dd/mm/yyyy" readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Estado Civil:</label>
+                                <div class="col-sm-6">
+                                    <!--<input type="text" id="sEstadoCivil" name="sEstadoCivil" ng-model="actualiza.person.personaModel.sEstadoCivil" ng-disabled="edit" placeholder="Estado Civil">-->
+                                    <select ng-model="actualiza.person.personaModel.mEstadoCivil" ng-options="estado as estado.sDescripcionEstCivil for estado in actualiza.person.listEstadoCivilModel track by estado.sCodigoEstadoCivil" convert-to-number>
+                                        <option value="">Seleccione un estado civil</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Direccion de Residencia:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="sDirRes" name="sDirRes" ng-model="actualiza.person.personaModel.sDirRes" ng-disabled="edit" placeholder="Direccion de Residencia">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Teléfono Residencia:</label>
+                                <div class="col-sm-6">
+                                    <input type="tel" id="sTelRes" name="sTelRes" ng-model="actualiza.person.personaModel.sTelRes" ng-disabled="edit" placeholder="Teléfono Residencia">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-5">Ciudad de Nacimiento:</label>
+                                <div class="col-sm-6" >
+                                    <input type="text" id="sCiudadNac" name="sCiudadNac" ng-model="actualiza.person.personaModel.sNomCiudadNac" ng-disabled="edit" placeholder="Ciudad de Nacimiento" readonly="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Ciudad de Expedición del Documento:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="sCiudadExp" name="sCiudadExp" ng-model="actualiza.person.personaModel.sNomCiudadExp" ng-disabled="edit" placeholder="Ciudad de Expedición" readonly="true"  >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Número de Celular:</label>
+                                <div class="col-sm-6">
+                                    <input type="tel" id="sCelular" name="sCelular" ng-model="actualiza.person.personaModel.sCelular" ng-disabled="edit" placeholder="Número de Celular">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Personas a Cargo:</label>
+                                <div class="col-sm-6">
+                                    <input type="number" id="iNumPeraCargo" name="iNumPeraCargo" ng-model="actualiza.person.personaModel.iNumPeraCargo" ng-disabled="edit" placeholder="Personas a Cargo">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Nivel de Estudios Academicos:</label>
+                                <div class="col-sm-6">
+                                    <!--<input type="text" id="iNivelEst" name="iNivelEst" ng-model="actualiza.person.personaModel.iNivelEst" ng-disabled="edit" placeholder="Estudios Academicos">-->
+                                    <select ng-model="actualiza.person.personaModel.mNivelEstudios" ng-options="nivelEstudios as nivelEstudios.sDescripcion for nivelEstudios in actualiza.person.listNivelEstudiosModel track by nivelEstudios.sCodigo" convert-to-number>
+                                        <option value="">Seleccione su nivel de estudios</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-5">Ciudad de Residencia:</label>
+                                <div class="col-sm-6">
+                                    <!--<input type="text" id="sCiudadRes" name="sCiudadRes" ng-model="actualiza.person.personaModel.sCiudadRes" ng-disabled="edit" placeholder="Ciudad de Residencia">-->
+                                    <select ng-model="actualiza.person.personaModel.mCiudadRes" ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.person.listCiudadModel track by ciudad.sCodigo" convert-to-number>
+                                        <option value="">Seleccione una ciudad</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div>
+                        <br/>
+                        <br/>
+                        <h1>INFORMACION LABORAL</h1>
+                        <br/>
+
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label class="col-sm-5">Dirección de Oficina:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="sDirOfi" name="sDirOfi" ng-model="actualiza.person.personaModel.sDirOfi" ng-disabled="edit" placeholder="Dirección de Oficina">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-5">Teléfono de oficina:</label>
+                                <div class="col-sm-6">
+                                    <input type="tel" id="sTelOfi" name="sTelOfi" ng-model="actualiza.person.personaModel.sTelOfi" ng-disabled="edit" placeholder="Teléfono de oficina">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-5">Salario:</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="iSalario" name="iSalario" ng-model="actualiza.person.personaModel.iSalario" ng-disabled="edit"  placeholder="Salario">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+
+                            <div class="form-group">
+                                <label class="col-sm-5">Ciudad Oficina:</label>
+                                <div class="col-sm-6">
+                                    <!--<input type="text" id="iCiudadOfi" name="iCiudadOfi" ng-model="actualiza.person.personaModel.iCiudadOfi" ng-disabled="edit" placeholder="Ciudad Oficina">-->
+                                    <select ng-model="actualiza.person.personaModel.mCiudadRes" ng-options="ciudad as ciudad.sNombre for ciudad in actualiza.person.listCiudadModel track by ciudad.sCodigo" convert-to-number>
+                                        <option value="">Seleccione una ciudad</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-5">Correo Electronico Principal:</label>
+                                <div class="col-sm-6">
+                                    <input type="email" id="sCorreoPer" name="sCorreoPer" ng-model="actualiza.person.personaModel.sCorreoPer" ng-disabled="edit" placeholder="Correo Electronico">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-5">Correo Electronico Secundario:</label>
+                                <div class="col-sm-6">
+                                    <input type="email" id="sCorreoCor" name="sCorreoCor" ng-model="actualiza.person.personaModel.sCorreoCor" ng-disabled="edit" placeholder="Correo Electronico">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                    <br/>
+                    <button class="btn btn-success" ng-click="actualiza.save()" ng-disabled="error || incomplete">
+                        Actualizar Datos
+                    </button>
+                </div>
+            </section>
+            <section id="prefooter" class="section" ng-include="'../Layout/PreFooterLayout.html'"></section>
+            <footer id="footer" class="section" data-spacing="none" ng-include="'../Layout/FooterLayout.html'"></footer>
+        </div>
+        <!--<script src="../js/layout.js"></script>-->
+    </body>
+</html>
