@@ -10,17 +10,19 @@ import com.ethos.model.CiudadModel;
 import com.ethos.model.EstudianteModel;
 import com.ethos.model.PeriodoAcademicoModel;
 import com.google.gson.JsonObject;
+import com.sun.management.MissionControlMXBean;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.http.HttpSession;
 /**
  *
  * @author EquipoNo9
  */
 public class ModuloEtudiantes {
-        AbstractDAO comunidadDAO;
-        AbstractDAO ciudadesDAO;
-        AbstractDAO tipoEpsDAO;
+    
+        AbstractDAO moduloCompleEstudiante;
+        HttpSession miSession;
         
         
         public String guardarRegistroModuloEstudiantes(JsonObject registro) throws ParseException {
@@ -64,6 +66,7 @@ public class ModuloEtudiantes {
             
             
             int peri = estudiantemodel.getIdPeriodoAcademico();
+            String n = estudiantemodel.getNomEscuelaSecun();
             int p = estudiantemodel.getIdPaisSecundaria();
             int d = estudiantemodel.getIdDptoSecundaria();
             int c = estudiantemodel.getIdCiudadEscuela();
@@ -72,8 +75,10 @@ public class ModuloEtudiantes {
             String pen = estudiantemodel.getFondoPensiones();
             int e = estudiantemodel.getIdEps();
             
+            String resultadoGuardarDatos = moduloCompleEstudiante.insert(estudiantemodel);
             String r =estudiantemodel.getNomEscuelaSecun();
             System.out.println("Imprimir......"+ r +","+ peri + ","+ p +","+ d +","+ c +","+ f.toString() +",z "+ ca + "," + pen + "," + e);
+            System.out.println("resultado......" + resultadoGuardarDatos);
             return respuesta; 
         }
            

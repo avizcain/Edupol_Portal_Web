@@ -4,6 +4,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 appEdupol.controller('RegistroController', ['$http', getDataFromServer]);
 function getDataFromServer($http) {
     var registro = this;
@@ -101,41 +103,7 @@ function getDatosComplementarios($http) {
                         break;
                 }
                 break;
-            case 2:
-                switch (indice) {
-                    case 1:
-                        complementarios.person.PreRegistro.acudiente.paisRes.condicion = 2;
-                        complementarios.person.PreRegistro.acudiente.paisRes.indice = indice
-                        complementarios.datos = complementarios.person.PreRegistro.acudiente.paisRes;
-                        break;
-                    case 2:
-                        complementarios.person.PreRegistro.acudiente.depRes.condicion = 2;
-                        complementarios.person.PreRegistro.acudiente.depRes.indice = indice
-                        complementarios.datos = complementarios.person.PreRegistro.acudiente.depRes;
-                        break;
-                }
-
-                break;
-            case 3:
-                switch (indice) {
-                    case 1:
-                        complementarios.person.PreRegistro.estudiante.paisEstudio.condicion = 2;
-                        complementarios.person.PreRegistro.estudiante.paisEstudio.indice = indice;
-                        complementarios.datos = complementarios.person.PreRegistro.estudiante.paisEstudio;
-                        break;
-                    case 2:
-                        complementarios.person.PreRegistro.estudiante.depEstudio.condicion = 2;
-                        complementarios.person.PreRegistro.estudiante.depEstudio.indice = indice;
-                        complementarios.datos = complementarios.person.PreRegistro.estudiante.depEstudio;
-                        break;
-                    case 3:
-                        complementarios.person.PreRegistro.estudiante.ciudadEstudio.condicion = 2;
-                        complementarios.person.PreRegistro.estudiante.ciudadEstudio.indice = indice;
-                        complementarios.datos = complementarios.person.PreRegistro.estudiante.ciudadEstudio;
-                        break;
-                }
-
-                break;
+           
         }
 
         $http({
@@ -160,39 +128,18 @@ function getDatosComplementarios($http) {
                         break;
                     }
                     break;
-                case 2:
-                    switch (indice) {
-                        case 1:
-                            complementarios.DepartamentoAcudiente = data;
-                            break;
-                        case 2:
-                            complementarios.ciudadAcudiente = data;
-                            break;
-                    }
-                    break;
-                case 3:
-                case 2:
-                    switch (indice) {
-                        case 1:
-                            complementarios.DepartamentoEstudio = data;
-                            break;
-                        case 2:
-                            complementarios.ciudadEstudio = data;
-                            break;
-                        case 3:
-                            complementarios.centroAsociado = data;
-                    }
-                    break;
-            }
+                 }
 
         }).error(function (data, status, headers, config) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
         });
     };
-
+    
+    
    complementarios.secuenciaModulos = function () {       
       complementarios.person.condicion=0;
+      complementarios.person.fecGraSecundaria=document.getElementById("example1").value;
       complementarios.data = complementarios.person;
        $http({
         method: 'POST',
@@ -402,19 +349,6 @@ function getDatosIcfes($http) {
 
 function getDatosUniversidades($http) {
     var universidades = this;
-     $http({
-        method: 'GET',
-        url: "../RegistroControl?modulo=5",
-        headers: {'Content-Type': 'application/json'}
-    }).success(function (data, status, headers, config) {
-        universidades.informacion = data;
-        alert("aqui estoy universidades....." + universidades.informacion.lisCiudadModels);
-    }).error(function (data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-    }); 
-    
-    
    
     universidades.secuenciaModulosUniversidades = function () {
 
@@ -422,109 +356,7 @@ function getDatosUniversidades($http) {
         $("#codeudorDatos").collapse("toggle");
         $("#divDatosCodeudor").show();
     };
-    
-    universidades.listasPais = function (indice, indicePersona) {
-        switch (indicePersona) {
-            case 1:
-                switch (indice) {
-                    case 1:
-                        universidades.informacion.paisPadre.condicion = 2;
-                        universidades.informacion.paisPadre.indice = indice;
-                        universidades.datos = universidades.informacion.paisPadre;
-                        break;
-                    case 2:
-                        universidades.informacion.depadres.condicion = 2;
-                        universidades.informacion.depadres.indice = indice;
-                        universidades.datos = universidades.informacion.depadres;
-                        break;
-                }
-                break;
-            case 2:
-                switch (indice) {
-                    case 1:
-                        universidades.informacion.PreRegistro.acudiente.paisRes.condicion = 2;
-                        universidades.informacion.PreRegistro.acudiente.paisRes.indice = indice
-                        universidades.datos = universidades.informacion.PreRegistro.acudiente.paisRes;
-                        break;
-                    case 2:
-                        universidades.person.PreRegistro.acudiente.depRes.condicion = 2;
-                        universidades.person.PreRegistro.acudiente.depRes.indice = indice
-                        universidades.datos = universidades.person.PreRegistro.acudiente.depRes;
-                        break;
-                }
-
-                break;
-            case 3:
-                switch (indice) {
-                    case 1:
-                        universidades.person.PreRegistro.estudiante.paisEstudio.condicion = 2;
-                        universidades.person.PreRegistro.estudiante.paisEstudio.indice = indice;
-                        universidades.datos = universidades.person.PreRegistro.estudiante.paisEstudio;
-                        break;
-                    case 2:
-                        universidades.person.PreRegistro.estudiante.depEstudio.condicion = 2;
-                        universidades.person.PreRegistro.estudiante.depEstudio.indice = indice;
-                        universidades.datos = universidades.person.PreRegistro.estudiante.depEstudio;
-                        break;
-                    case 3:
-                        universidades.person.PreRegistro.estudiante.ciudadEstudio.condicion = 2;
-                        universidades.person.PreRegistro.estudiante.ciudadEstudio.indice = indice;
-                        universidades.datos = universidades.person.PreRegistro.estudiante.ciudadEstudio;
-                        break;
-                }
-
-                break;
-        }
-
-        $http({
-            method: 'POST',
-            url: "../RegistroControl",
-            headers: {'Content-Type': 'application/json;charset=Utf-8'},   
-            data: universidades.informacion
-        }).success(function (data, status, headers, config) {
-            switch (indicePersona) {
-                case 1:
-                    switch (indice) {
-                        case 1:
-                            universidades.depadres = data;
-                            alert("hola....."+data.lisCiudadModels.toString());
-                            break;
-                        case 2:
-                            universidades.ciudadpadres = data;
-                            alert("hola....."+data.lisCiudadModels.toString());
-                        break;
-                    }
-                    break;
-                case 2:
-                    switch (indice) {
-                        case 1:
-                            //complementarios.DepartamentoAcudiente = data;
-                            break;
-                        case 2:
-                            //complementarios.ciudadAcudiente = data;
-                            break;
-                    }
-                    break;
-                case 3:
-                case 2:
-                    switch (indice) {
-                        case 1:
-                            //complementarios.DepartamentoEstudio = data;
-                            break;
-                        case 2:
-                            //complementarios.ciudadEstudio = data;
-                            break;
-                        case 3:
-                            //complementarios.centroAsociado = data;
-                    }
-                    break;
-            }
-
-        }).error(function (data, status, headers, config) {
-            // called asynchronously if an error occurs
-            // or server returns response with an error status.
-        });
-    };
+ 
     
     
     universidades.esconder = true;
@@ -690,3 +522,4 @@ function getDatosFinalizacion($http) {
     final.esconder = true;
 }
 ;
+

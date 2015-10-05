@@ -185,7 +185,7 @@ public class RegistroControl extends HttpServlet {
         try {
             BufferedReader reader = request.getReader();
             JsonObject dataJson = funcionesGenerales.recibirDatos(reader);
-            System.out.println("datos post...."+dataJson);
+            System.out.println("datos post Registro estudiante...."+dataJson);
             
             switch(dataJson.get("condicion").getAsInt()){
                 case 0:
